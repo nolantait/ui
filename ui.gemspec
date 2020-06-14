@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.version     = Ui::VERSION
   spec.authors     = ["Nolan Tait"]
   spec.email       = ["nolanjtait@gmail.com"]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of Ui."
-  spec.description = "TODO: Description of Ui."
+  spec.homepage    = "https://www.taiventures.ca"
+  spec.summary     = "Summary of Ui."
+  spec.description = "Description of Ui."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -26,6 +26,13 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "rails", "~> 6.0.3", ">= 6.0.3.1"
+  spec.add_dependency "dry-struct"
+  spec.add_dependency "percent"
+  spec.add_dependency "trailblazer-cells"
+  spec.add_dependency "cells-erb"
+  spec.add_dependency "cells-rails"
 
+  spec.add_development_dependency 'rspec-rails'
+  spec.add_development_dependency 'factory_bot_rails'
   spec.add_development_dependency "sqlite3"
 end
