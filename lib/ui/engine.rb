@@ -3,9 +3,11 @@ module Ui
     isolate_namespace Ui
 
     config.generators do |g|
-      g.test_framework :rspec
+      g.test_framework :rspec, fixture: false
       g.fixture_replacement :factory_bot
       g.factory_bot dir: 'spec/factories'
+      g.assets false
+      g.helper false
     end
   end
 end
