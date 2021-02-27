@@ -1,5 +1,7 @@
 module Ui
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ::ApplicationController
+    layout 'application'
+
     protect_from_forgery with: :exception
   end
 end
