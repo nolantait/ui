@@ -4,13 +4,24 @@ module Ui
       property :name
       property :path
       property :current?
+      property :icon
 
       def show
         content_tag(
           :span,
-          name,
+          link_to(path) do
+            title.html_safe
+          end,
           class: style
         )
+      end
+
+      private
+
+      def title
+        [name].tap do |array|
+          array.unshift(content_tag(:i, nil, class: icon)) if model.try(:icon)
+        end.join(' ')
       end
 
       def style

@@ -23,7 +23,7 @@ module Ui
     end
 
     def delimiter
-      options[:delimiter] || content_tag(:span, '>')
+      options[:delimiter] || content_tag(:span, '>', class: 'breadcrumb-delimiter')
     end
 
     def item_renderer
