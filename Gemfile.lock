@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ui (0.1.0)
+    ui (0.1.2)
       cells-erb
       cells-rails
       dry-struct

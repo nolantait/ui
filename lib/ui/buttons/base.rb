@@ -42,7 +42,12 @@ module Ui
 
       def display(*args)
         if disabled?
-          button_to(*args)
+          content_tag(
+            :button,
+            model,
+            disabled: true,
+            class: button_classes
+          )
         else
           link_to(*args)
         end
@@ -69,7 +74,7 @@ module Ui
       end
 
       def text
-        content_tag(:span, model)
+        model
       end
 
       def text_with_icon(icon)

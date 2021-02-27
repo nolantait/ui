@@ -1,15 +1,130 @@
-<article class="style-guide">
-  <article class="style-guide__section">
-    <header>
-      <h1>Buttons</h1>
-    </header>
-
-    <section class="style-guide__example">
-      <%= cell(
-        Ui::Buttons::Base,
-        'Hello',
-        path: '/'
-      ) %>
+<div class="style-guide-container">
+  <aside class="style-guide-sidebar">
+    <section>
+      <header>
+        <h5><a href="#buttons">Buttons</a></h5>
+      </header>
+      <nav>
+        <%= link_to 'Type', '#type' %>
+      </nav>
     </section>
+  </aside>
+
+  <article class="style-guide">
+    <article class="style-guide__section" id="buttons">
+      <header>
+        <h1>Buttons</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Type</h2>
+        </header>
+
+        <%= cell(
+          Ui::Buttons::Primary,
+          'Primary Button',
+          path: '/'
+        ) %>
+        <%= cell(
+          Ui::Buttons::Secondary,
+          'Secondary Button',
+          path: '/'
+        ) %>
+        <%= cell(
+          Ui::Buttons::Tertiary,
+          'Tertiary Button',
+          path: '/'
+        ) %>
+      </section>
+
+      <section class="style-guide__example">
+        <header>
+          <h2>Icons</h2>
+        </header>
+
+        <%= cell(
+          Ui::Buttons::Primary,
+          'Primary Button',
+          path: '/'
+        ).call(:new) %>
+        <%= cell(
+          Ui::Buttons::Secondary,
+          'Secondary Button',
+          path: '/'
+        ).call(:edit) %>
+        <%= cell(
+          Ui::Buttons::Tertiary,
+          'Tertiary Button',
+          path: '/'
+        ).call(:destroy) %>
+      </section>
+
+      <section class="style-guide__example">
+        <header>
+          <h2>Sizes</h2>
+        </header>
+
+        <%= cell(
+          Ui::Buttons::Primary,
+          'Large Button',
+          path: '/'
+        ).call(:new) %>
+        <%= cell(
+          Ui::Buttons::Secondary,
+          'Small Button',
+          path: '/',
+          class: 'button--small'
+        ).call(:edit) %>
+      </section>
+
+      <section class="style-guide__example">
+        <header>
+          <h2>Disabled</h2>
+        </header>
+
+        <%= cell(
+          Ui::Buttons::Primary,
+          'Primary Disabled',
+          path: '/',
+          disabled: true
+        ).call(:new) %>
+        <%= cell(
+          Ui::Buttons::Secondary,
+          'Secondary Disabled',
+          path: '/',
+          disabled: true
+        ).call(:edit) %>
+        <%= cell(
+          Ui::Buttons::Tertiary,
+          'Tertiary Disabled',
+          path: '/',
+          disabled: true
+        ).call(:edit) %>
+      </section>
+    </article>
+
+    <article class="style-guide__section" id="buttons">
+      <header>
+        <h1>Typography</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Sizes</h2>
+        </header>
+
+        <div class="space-y-4">
+          <div class="font-bold space-y-4">
+            <h1>h1. Tait Ventures</h1>
+            <h2>h2. Tait Ventures</h2>
+            <h3>h3. Tait Ventures</h3>
+            <h4>h4. Tait Ventures</h4>
+            <h5>h5. Tait Ventures</h5>
+          </div>
+          <p>p. Tait Ventures</p>
+          <small>small. Tait Ventures</small>
+        </div>
+    </article>
   </article>
-</article>
+</div>
