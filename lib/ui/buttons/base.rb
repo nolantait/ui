@@ -89,11 +89,11 @@ module Ui
       end
 
       def path
-        options[:path]
+        options[:path] || '#'
       end
 
       def data
-        options[:data]
+        options[:data] || {}
       end
 
       def target
