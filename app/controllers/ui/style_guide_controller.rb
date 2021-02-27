@@ -1,5 +1,5 @@
 module Ui
-  class StyleGuideController < ActionController::Base
+  class StyleGuideController < ApplicationController
     protect_from_forgery with: :exception
 
     def show
