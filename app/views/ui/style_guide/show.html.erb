@@ -126,5 +126,39 @@
           <small>small. Tait Ventures</small>
         </div>
     </article>
+
+    <article class="style-guide__section" id="buttons">
+      <header>
+        <h1>Breadcrumbs</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Breadcrumbs,
+            [
+              OpenStruct.new(name: 'Home', path: '#', current?: false, icon: 'fas fa-home'),
+              OpenStruct.new(name: 'Application Center', path: '#', current?: false),
+              OpenStruct.new(name: 'Application List', path: '#', current?: false),
+              OpenStruct.new(name: 'An Application', path: '#', current?: true),
+            ]
+          ) %>
+
+          <%= cell(
+            Ui::Breadcrumbs,
+            [
+              OpenStruct.new(name: 'Home', path: '#', current?: false, icon: 'fas fa-home'),
+              OpenStruct.new(name: 'Application Center', path: '#', current?: false),
+              OpenStruct.new(name: 'Application List', path: '#', current?: false),
+              OpenStruct.new(name: 'An Application', path: '#', current?: true),
+            ],
+            delimiter: content_tag(:span, '/', class: 'breadcrumb-delimiter')
+          ) %>
+        </div>
+    </article>
   </article>
 </div>
