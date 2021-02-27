@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.0.3", ">= 6.0.3.1"
   spec.add_dependency "dry-struct"
+  spec.add_dependency "dry-types"
   spec.add_dependency "percent"
   spec.add_dependency "trailblazer-cells"
   spec.add_dependency "cells-erb"
