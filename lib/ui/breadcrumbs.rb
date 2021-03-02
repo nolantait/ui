@@ -1,7 +1,5 @@
 module Ui
   class Breadcrumbs < Component
-    Breadcrumb = Types.Interface(:name, :path, :current?)
-
     def show
       content_tag(:nav, class: 'ui-breadcrumbs') do
         breadcrumb_links
@@ -11,7 +9,7 @@ module Ui
     private
 
     def breadcrumbs
-      Types::Array.of(Breadcrumb)[model]
+      Types::Array.of(Crumb)[model]
     end
 
     def breadcrumb_links

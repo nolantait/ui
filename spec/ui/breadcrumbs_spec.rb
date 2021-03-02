@@ -6,8 +6,8 @@ describe Ui::Breadcrumbs, type: :cell do
   let(:result) { html }
   let(:breadcrumbs) {
     [
-      OpenStruct.new(path: '#', name: 'Breadcrumb 1', current?: true),
-      OpenStruct.new(path: '#', name: 'Breadcrumb 2', current?: false)
+      Ui::Breadcrumbs::Crumb.new(path: '#', name: 'Breadcrumb 1', current: true),
+      Ui::Breadcrumbs::Crumb.new(path: '#', name: 'Breadcrumb 2', current: false)
     ]
   }
 

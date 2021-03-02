@@ -1,6 +1,7 @@
 require "ui/engine"
 require "cells"
 require "cells-rails"
+require 'dry-struct'
 
 require "ui/types"
 require "ui/component"

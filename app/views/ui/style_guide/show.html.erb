@@ -104,7 +104,7 @@
       </section>
     </article>
 
-    <article class="style-guide__section" id="buttons">
+    <article class="style-guide__section" id="typography">
       <header>
         <h1>Typography</h1>
       </header>
@@ -125,9 +125,10 @@
           <p>p. Tait Ventures</p>
           <small>small. Tait Ventures</small>
         </div>
+      </section>
     </article>
 
-    <article class="style-guide__section" id="buttons">
+    <article class="style-guide__section" id="breadcrumbs">
       <header>
         <h1>Breadcrumbs</h1>
       </header>
@@ -141,24 +142,71 @@
           <%= cell(
             Ui::Breadcrumbs,
             [
-              OpenStruct.new(name: 'Home', path: '#', current?: false, icon: 'fas fa-home'),
-              OpenStruct.new(name: 'Application Center', path: '#', current?: false),
-              OpenStruct.new(name: 'Application List', path: '#', current?: false),
-              OpenStruct.new(name: 'An Application', path: '#', current?: true),
+              Ui::Breadcrumbs::Crumb.new(name: 'Home', icon: 'fas fa-home'),
+              Ui::Breadcrumbs::Crumb.new(name: 'Application Center',),
+              Ui::Breadcrumbs::Crumb.new(name: 'Application List'),
+              Ui::Breadcrumbs::Crumb.new(name: 'An Application', current: true)
             ]
           ) %>
 
           <%= cell(
             Ui::Breadcrumbs,
             [
-              OpenStruct.new(name: 'Home', path: '#', current?: false, icon: 'fas fa-home'),
-              OpenStruct.new(name: 'Application Center', path: '#', current?: false),
-              OpenStruct.new(name: 'Application List', path: '#', current?: false),
-              OpenStruct.new(name: 'An Application', path: '#', current?: true),
+              Ui::Breadcrumbs::Crumb.new(name: 'Home', icon: 'fas fa-home'),
+              Ui::Breadcrumbs::Crumb.new(name: 'Application Center',),
+              Ui::Breadcrumbs::Crumb.new(name: 'Application List'),
+              Ui::Breadcrumbs::Crumb.new(name: 'An Application', current: true)
             ],
             delimiter: content_tag(:span, '/', class: 'breadcrumb-delimiter')
           ) %>
         </div>
+      </section>
+    </article>
+
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Page Header</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::PageHeader,
+            'Title',
+            subtitle: 'This is a subtitle',
+          ) %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Breadcrumbs</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::PageHeader,
+            'Title',
+            subtitle: 'This is a subtitle',
+            breadrumbs: [
+              Ui::Breadcrumbs::Crumb.new(
+                title: 'First level',
+              ),
+              Ui::Breadcrumbs::Crumb.new(
+                title: 'Second level',
+              ),
+              Ui::Breadcrumbs::Crumb.new(
+                title: 'Third level',
+                current: true
+              )
+            ]
+          ) %>
+        </div>
+      </section>
     </article>
   </article>
 </div>

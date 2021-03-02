@@ -1,36 +1,15 @@
 module Ui
-  class Breadcrumbs < Component
-    class Crumb < Component
-      property :name
-      property :path
-      property :current?
-      property :icon
+  class Breadcrumbs
+    class Crumb < Dry::Struct
+      attribute :name, Types::Strict::String
+      attribute :path, Types::Strict::String.default('#'.freeze)
+      attribute :current, Types::Strict::Bool.default(false.freeze)
+      attribute :icon, Types::Strict::String.default(''.freeze)
 
-      def show
-        content_tag(
-          :span,
-          link_to(path) do
-            title.html_safe
-          end,
-          class: style
-        )
-      end
-
-      private
-
-      def title
-        [name].tap do |array|
-          array.unshift(content_tag(:i, nil, class: icon)) if model.try(:icon)
-        end.join(' ')
-      end
-
-      def style
-        [
-          'breadcrumb'
-        ].tap do |array|
-          array << 'breadcrumb--current' if current?
-        end
+      def current?
+        current
       end
     end
   end
 end
+
