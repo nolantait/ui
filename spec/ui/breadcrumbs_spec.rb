@@ -48,6 +48,8 @@ describe Ui::Breadcrumbs, type: :cell do
 
       it 'renders the button' do
         expect(result).to have_css '.ui-breadcrumbs'
+        expect(result).to have_content 'Breadcrumb 1'
+        expect(result).to have_content 'Breadcrumb 2'
       end
     end
   end

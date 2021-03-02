@@ -177,7 +177,8 @@
           <%= cell(
             Ui::PageHeader,
             'Title',
-            subtitle: 'This is a subtitle',
+            subheading: 'This is a subtitle',
+            back: '#'
           ) %>
         </div>
       </section>
@@ -191,20 +192,78 @@
           <%= cell(
             Ui::PageHeader,
             'Title',
-            subtitle: 'This is a subtitle',
-            breadrumbs: [
-              Ui::Breadcrumbs::Crumb.new(
-                title: 'First level',
-              ),
-              Ui::Breadcrumbs::Crumb.new(
-                title: 'Second level',
-              ),
-              Ui::Breadcrumbs::Crumb.new(
-                title: 'Third level',
-                current: true
-              )
+            subheading: 'This is a subtitle',
+            back: '#',
+            breadcrumbs: cell(
+              Ui::Breadcrumbs,
+              [
+                Ui::Breadcrumbs::Crumb.new(
+                  name: 'First level',
+                ),
+                Ui::Breadcrumbs::Crumb.new(
+                  name: 'Second level',
+                ),
+                Ui::Breadcrumbs::Crumb.new(
+                  name: 'Third level',
+                  current: true
+                )
+              ]
+            ),
+          ) %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Actions</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::PageHeader,
+            'Title',
+            subheading: 'This is a subtitle',
+            back: '#',
+            actions: [
+              ->(_) {
+                cell(
+                  Ui::Buttons::Primary,
+                  'Primary',
+                  path: '#',
+                  size: :small,
+                  icon: 'fas fa-bullseye'
+                )
+              },
+              ->(_) {
+                cell(
+                  Ui::Buttons::Secondary,
+                  'Operation',
+                  path: '#',
+                  size: :small
+                )
+              }
             ]
           ) %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Extra Content</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::PageHeader,
+            'Title',
+            subheading: 'This is a subtitle',
+            back: '#',
+          ).() do
+            content_tag(:section) do
+              content_tag(:p, 'This is some extra content.') +
+              content_tag(:p, 'You can put anything you want here.')
+            end
+          end %>
         </div>
       </section>
     </article>
