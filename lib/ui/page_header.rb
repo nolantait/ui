@@ -1,7 +1,6 @@
 module Ui
   class PageHeader < Component
     include Ui::Actionable
-    self.view_paths = ["lib"]
 
     def show(&block)
       render(&block)

@@ -20,5 +20,4 @@ require 'ui/breadcrumbs/breadcrumb'
 require "ui/page_header"
 
 module Ui
-  # Your code goes here...
 end

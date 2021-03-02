@@ -11,6 +11,7 @@ describe Ui::PageHeader, type: :cell do
           described_class,
           'Title',
           subheading: 'Subheading',
+          back: '#',
           breadcrumbs: cell(
             Ui::Breadcrumbs,
             [
@@ -24,6 +25,8 @@ describe Ui::PageHeader, type: :cell do
       it 'renders the button' do
         expect(result).to have_content "Breadcrumb 1"
         expect(result).to have_content "Breadcrumb 2"
+
+        expect(result).to have_css '.fa-arrow-left'
 
         expect(result).to have_content 'Title'
         expect(result).to have_content 'Subheading'

@@ -69,8 +69,18 @@ module Ui
         [
           "button",
           style,
+          size,
           options.fetch(:class, '')
         ].compact.join(' ')
+      end
+
+      def size
+        case options[:size]
+        when :small
+          'button--small'
+        else
+          ''
+        end
       end
 
       def text
