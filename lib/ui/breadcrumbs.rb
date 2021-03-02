@@ -25,7 +25,7 @@ module Ui
     end
 
     def item_renderer
-      options[:item_renderer] || Ui::Breadcrumbs::Crumb
+      options[:item_renderer] || Ui::Breadcrumbs::Breadcrumb
     end
   end
 end

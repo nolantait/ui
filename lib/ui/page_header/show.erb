@@ -1,0 +1,16 @@
+<article class="ui-page-header">
+  <%= breadcrumbs %>
+
+  <header>
+    <%= back_button %>
+
+    <hgroup>
+      <%= title %>
+      <%= subheading %>
+    </hgroup>
+
+    <%= render_actions %>
+  </header>
+
+  <%= yield if block_given? %>
+</article>
