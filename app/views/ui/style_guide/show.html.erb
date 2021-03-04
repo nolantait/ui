@@ -268,4 +268,39 @@
       </section>
     </article>
   </article>
+
+  <article class="style-guide__section" id="breadcrumbs">
+    <header>
+      <h1>Dropdowns</h1>
+    </header>
+
+    <section class="style-guide__example" id="type">
+      <header>
+        <h2>Basic</h2>
+      </header>
+
+      <div class="space-y-4">
+        <%= cell(
+          Ui::Dropdown,
+          cell(
+            Ui::Menu,
+            [
+              ->(_) {
+                content_tag(:p, 'Item 1')
+              },
+              ->(_) {
+                content_tag(:p, 'Item 2')
+              }
+            ]
+          ).()
+        ).() do
+          cell(
+            Ui::Buttons::Primary,
+            'Hover me',
+            icon: 'fas fa-caret-down'
+          ).()
+        end %>
+      </div>
+    </section>
+  </article>
 </div>

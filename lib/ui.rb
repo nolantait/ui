@@ -19,5 +19,8 @@ require 'ui/breadcrumbs/breadcrumb'
 
 require "ui/page_header"
 
+require "ui/menu"
+require "ui/dropdown"
+
 module Ui
 end
