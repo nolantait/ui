@@ -44,7 +44,7 @@ module Ui
         if disabled?
           content_tag(
             :button,
-            model,
+            args.first,
             disabled: true,
             class: button_classes
           )
@@ -70,7 +70,7 @@ module Ui
           "button",
           style,
           size,
-          options.fetch(:class, '')
+          options.fetch(:style, '')
         ].compact.join(' ')
       end
 
@@ -84,12 +84,18 @@ module Ui
       end
 
       def text
-        model
+        content_tag(:span, model) unless model.nil?
       end
 
       def text_with_icon(icon)
         if icon
-          content_tag(:i, nil, class: icon) + text
+          content_tag(
+            :span,
+            render_group([
+              content_tag(:i, nil, class: icon),
+              text
+            ].compact)
+          )
         else
           text
         end

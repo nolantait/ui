@@ -74,7 +74,7 @@
           Ui::Buttons::Secondary,
           'Small Button',
           path: '/',
-          class: 'button--small'
+          style: 'button--small'
         ).call(:edit) %>
       </section>
 
@@ -336,6 +336,29 @@
               icon: 'fas fa-caret-down',
             ).()
           end %>
+        </div>
+      </section>
+    </article>
+
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Pagination</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Pagination,
+            (1..100).map do |i|
+              "/links?page=#{i}"
+            end,
+            current_path: '/links?page=1',
+            window_size: 5
+          ) %>
         </div>
       </section>
     </article>

@@ -12,7 +12,7 @@ module Ui
     end
 
     def render_group(items)
-      items.join(' ').html_safe
+      items.compact.join(' ').html_safe
     end
   end
 end

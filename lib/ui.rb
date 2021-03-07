@@ -5,6 +5,7 @@ require "cells-rails"
 require 'dry-struct'
 
 require "ui/types"
+require "ui/value"
 
 require "ui/actionable"
 require "ui/stylable"
@@ -27,6 +28,10 @@ require "ui/menu/callable"
 require "ui/menu/submenu"
 
 require "ui/dropdown"
+
+require "ui/pagination"
+require "ui/pagination/page_link"
+require "ui/pagination/window"
 
 module Ui
 end
