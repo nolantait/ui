@@ -363,5 +363,74 @@
       </section>
     </article>
 
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Steps</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Horizontal</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Steps,
+            [
+              {
+                title: 'First step',
+                status: 'finished',
+                icon: 'fas fa-home',
+                description: 'My second step description'
+              },
+              {
+                title: 'Second step',
+                subtitle: 'ETA 5 minutes',
+                status: 'processing',
+                description: 'My second step description'
+              },
+              {
+                title: 'Last step',
+                status: 'waiting',
+              },
+            ],
+            current_step: 1
+          ) %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Vertical</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Steps,
+            [
+              {
+                title: 'Wake up',
+                status: 'finished',
+                icon: 'fas fa-home',
+                description: 'You finished the first step'
+              },
+              {
+                title: 'Get money',
+                subtitle: 'Error',
+                status: 'error',
+                description: 'Something has caused an error'
+              },
+              {
+                title: 'Go to sleep',
+                status: 'waiting',
+              },
+            ],
+            current_step: 1,
+            direction: 'vertical'
+          ) %>
+        </div>
+      </section>
+
+    </article>
   </article>
 </div>
