@@ -44,6 +44,8 @@ require "ui/card"
 require "ui/descriptive_list"
 require "ui/descriptive_list/item"
 
+require "ui/list"
+require "ui/list/item"
 
 module Ui
 end
