@@ -5,5 +5,13 @@ module Ui
         action.call(model)
       end.join(' ')
     end
+
+    def actions_length
+      options.fetch(:actions, Array.new).size
+    end
+
+    def has_actions?
+      options.fetch(:actions, false)
+    end
   end
 end

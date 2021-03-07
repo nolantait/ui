@@ -1,0 +1,16 @@
+<article class="<%= style %>">
+  <%= cover %>
+
+  <% if title || extra %>
+    <header class="ui-card__header">
+      <%= title %>
+      <%= extra %>
+    </header>
+  <% end %>
+
+  <section class="ui-card__content">
+    <%= yield %>
+  </section>
+
+  <%= card_actions %>
+</article>
