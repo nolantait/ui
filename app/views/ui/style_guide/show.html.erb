@@ -608,5 +608,94 @@
       </section>
     </article>
 
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Lists</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::List,
+            [
+              "Item 1",
+              "Item 2",
+              "Item 3",
+              "Item 4"
+            ],
+            header: 'My list title',
+            footer: 'My list footer',
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Custom Renderable</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::List,
+            [
+              "Item 1",
+              "Item 2",
+              "Item 3",
+              "Item 4"
+            ],
+            header: 'My list title',
+            footer: content_tag(
+              :div,
+              cell(
+                Ui::Pagination,
+                [
+                  '/links',
+                  '/links?page=2',
+                  '/links?page=3',
+                  '/links?page=4'
+                ],
+                current_path: '/links?page=2'
+              ),
+              class: 'ml-auto'
+            ),
+            style: "border",
+            actions: [
+              ->(_) {
+                cell(
+                  Ui::Buttons::Primary,
+                  'Start',
+                  path: '#',
+                  icon: 'fas fa-bullseye',
+                  size: :small
+                ).()
+              }
+            ],
+            renderable: ->(item) {
+              content_tag(
+                :div,
+                [
+                  content_tag(:p, item),
+                  content_tag(
+                    :nav,
+                    cell(
+                      Ui::Buttons::Tertiary,
+                      'Edit',
+                      path: '#',
+                      size: :small
+                    ).call(:edit)
+                  )
+                ].join(' ').html_safe,
+                class: 'flex flex-row justify-between items-center p-4'
+              )
+            }
+          ).() %>
+        </div>
+      </section>
+    </article>
+
   </article>
 </div>
