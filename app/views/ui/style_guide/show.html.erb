@@ -432,5 +432,51 @@
       </section>
 
     </article>
+
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Wizard</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Wizard,
+            [
+              {
+                title: 'First step',
+                status: 'finished',
+                icon: 'fas fa-home',
+                description: 'My second step description',
+                content: content_tag(:p, 'First content')
+              },
+              {
+                title: 'Second step',
+                subtitle: 'ETA 5 minutes',
+                status: 'processing',
+                description: 'My second step description',
+                content: content_tag(:p, 'Second content')
+              },
+              {
+                title: 'Last step',
+                status: 'waiting',
+                content: content_tag(:p, 'Last content')
+              },
+            ],
+            current_step: 1,
+            finish: cell(
+              Ui::Buttons::Primary,
+              'Finish',
+              icon: 'fas fa-bullseye',
+              path: '#'
+            )
+          ) %>
+        </div>
+      </section>
+    </article>
   </article>
 </div>
