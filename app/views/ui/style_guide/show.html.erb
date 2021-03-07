@@ -267,5 +267,78 @@
         </div>
       </section>
     </article>
+
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Dropdowns</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Clickable</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Dropdown,
+            cell(
+              Ui::Menu,
+              [
+                content_tag(:p, 'Item 1'),
+                content_tag(:p, 'Item 2'),
+                [
+                  content_tag(:p, 'Submenu'),
+                  [
+                    content_tag(:p, 'Submenu item 1'),
+                    [
+                      content_tag(:p, 'Submenu item 2'),
+                      [
+                        content_tag(:p, 'Sub submenu item 1'),
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              header: 'Items',
+              style: 'w-64'
+            ).(),
+            mode: 'click'
+          ).() do
+            cell(
+              Ui::Buttons::Primary,
+              'Click me',
+              icon: 'fas fa-caret-down',
+            ).()
+          end %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Hoverable</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Dropdown,
+            cell(
+              Ui::Menu,
+              [
+                content_tag(:p, 'Item 1'),
+                content_tag(:p, 'Item 2')
+              ]
+            ).(),
+            mode: 'hover'
+          ).() do
+            cell(
+              Ui::Buttons::Primary,
+              'Hover me',
+              icon: 'fas fa-caret-down',
+            ).()
+          end %>
+        </div>
+      </section>
+    </article>
+
   </article>
 </div>

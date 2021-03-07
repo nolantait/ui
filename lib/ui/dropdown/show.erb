@@ -1,0 +1,13 @@
+<div 
+  data-controller="dropdown"
+  data-dropdown-hidden-class="hidden"
+  data-dropdown-expanded-value="false"
+  data-dropdown-mode-value="<%= mode %>"
+  data-action="click->dropdown#toggle"
+  class="ui-dropdown">
+  <%= yield %>
+
+  <div data-dropdown-target="expandable" class="ui-dropdown__expandable">
+    <%= overlay %>
+  </div>
+</div>
