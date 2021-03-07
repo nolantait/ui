@@ -41,5 +41,9 @@ require "ui/wizard/content"
 
 require "ui/card"
 
+require "ui/descriptive_list"
+require "ui/descriptive_list/item"
+
+
 module Ui
 end

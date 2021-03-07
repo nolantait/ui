@@ -500,7 +500,6 @@
           end %>
         </div>
       </section>
-    </article>
 
       <section class="style-guide__example" id="type">
         <header>
@@ -549,6 +548,65 @@
       </section>
     </article>
 
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Descriptive Lists</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::DescriptiveList,
+            [
+              ["Name", "John Doe"],
+              ["Phone number", "778-212-2322"],
+              ["Street address", "1233 Fake Street"],
+              ["Status", ->() { content_tag(:i, nil, class: 'fas fa-ellipsis-h') }],
+              ["Income", "$2,300/month"],
+              ["Goal", "Stack paper"],
+            ],
+            title: 'Horizontal orientation',
+            direction: 'horizontal',
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Vertical</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::DescriptiveList,
+            [
+              ["Name", "John Doe"],
+              ["Phone number", "778-212-2322"],
+              ["Street address", "1233 Fake Street"],
+              ["Status", ->() { content_tag(:i, nil, class: 'fas fa-ellipsis-h') }],
+              ["Income", "$2,300/month"],
+              ["Goal", "Stack paper"],
+            ],
+            title: 'Vertical orientation',
+            direction: 'vertical',
+            actions: [
+              ->(_) {
+                cell(
+                  Ui::Buttons::Primary,
+                  'Edit',
+                  path: '#',
+                  size: :small
+                ).call(:edit)
+              }
+            ]
+          ).() %>
+        </div>
+      </section>
+    </article>
 
   </article>
 </div>
