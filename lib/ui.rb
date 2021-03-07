@@ -39,5 +39,7 @@ require "ui/step"
 require "ui/wizard"
 require "ui/wizard/content"
 
+require "ui/card"
+
 module Ui
 end
