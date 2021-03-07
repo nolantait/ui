@@ -36,5 +36,8 @@ require "ui/pagination/window"
 require "ui/steps"
 require "ui/step"
 
+require "ui/wizard"
+require "ui/wizard/content"
+
 module Ui
 end
