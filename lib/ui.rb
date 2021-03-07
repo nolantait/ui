@@ -33,5 +33,8 @@ require "ui/pagination"
 require "ui/pagination/page_link"
 require "ui/pagination/window"
 
+require "ui/steps"
+require "ui/step"
+
 module Ui
 end

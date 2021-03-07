@@ -14,5 +14,9 @@ module Ui
     def render_group(items)
       items.compact.join(' ').html_safe
     end
+
+    def icon(style)
+      content_tag(:i, nil, class: style)
+    end
   end
 end
