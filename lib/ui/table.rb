@@ -16,7 +16,7 @@ module Ui
       content_tag(:table, data: table_data_attributes) do
         render_group([
           content_tag(:thead, table_headers),
-          content_tag(:tbody, table_rows)
+          content_tag(:tbody, table_rows, data: table_body_data_attributes)
         ])
       end
     end
@@ -40,15 +40,28 @@ module Ui
 
     def table_data_attributes
       {
-        controller: table_controller,
+        controller: table_controllers,
         "selectable-selected-value": "[]",
         "selectable-type-value": multi_select? ? 'many' : 'one'
       }
     end
 
-    def table_controller
+    def table_body_data_attributes
+      {
+        controller: table_body_controllers,
+        "sortable-update-url-value": sortable_options.fetch(:update_url, '#'),
+        "sortable-input-name-value": sortable_options.fetch(:input_name, "object[position]")
+      }
+    end
+
+    def table_controllers
       [].tap do |array|
         array << "selectable" if selectable?
+      end.join(' ')
+    end
+
+    def table_body_controllers
+      [].tap do |array|
         array << "sortable" if sortable?
       end.join(' ')
     end
@@ -77,6 +90,7 @@ module Ui
     def columns
       @columns ||= options.fetch(:columns, Array.new).tap do |columns|
         columns.unshift(selectable_column) if selectable?
+        columns.unshift(sortable_column) if sortable?
       end
     end
 
@@ -84,6 +98,13 @@ module Ui
       [
         ->() { select_all },
         ->(data) { cell(Ui::Table::Select, data, selectable_options) }
+      ]
+    end
+
+    def sortable_column
+      [
+        ->() { nil },
+        ->(data) { cell(Ui::Table::Sort, data, sortable_options) }
       ]
     end
 
@@ -105,6 +126,10 @@ module Ui
 
     def selectable_options
       features.fetch(:selectable, {})
+    end
+
+    def sortable_options
+      features.fetch(:sortable, {})
     end
 
     def features

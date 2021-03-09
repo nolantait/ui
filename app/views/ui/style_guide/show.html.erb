@@ -778,5 +778,41 @@
           ).() %>
         </div>
       </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Sortable</h2>
+        </header>
+
+        <div class="space-y-8">
+          <%= cell(
+            Ui::Table,
+            [
+              "Data 1",
+              "Data 2",
+              "Data 3",
+            ],
+            columns: [
+              ["Column 1", ->(data) { data } ],
+              ["Column 2", ->(data) { "Column 2 data" } ],
+              ["Column 3", ->(data) { "Column 3 data" } ],
+              ["Actions", ->(data) { cell(Ui::Buttons::Tertiary, 'More')} ],
+            ],
+            header: 'Multi select',
+            style: 'my-style',
+            features: {
+              selectable: {
+                multiple: true,
+              },
+              sortable: {
+                input_name: 'object[position]',
+                update_url: '#',
+                handle: 'fas fa-bars'
+              }
+            }
+          ).() %>
+        </div>
+      </section>
+    </article>
   </article>
 </div>
