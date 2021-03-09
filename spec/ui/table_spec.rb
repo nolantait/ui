@@ -19,7 +19,12 @@ describe Ui::Table, type: :cell do
           ["Column 3", ->(data) { "Column 3 data" } ]
         ],
         header: 'My title',
-        style: 'my-style'
+        style: 'my-style',
+        features: {
+          selectable: {
+            multiple: true
+          }
+        }
       ).()
     }
 

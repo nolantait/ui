@@ -48,6 +48,8 @@ require "ui/list"
 require "ui/list/item"
 
 require "ui/table"
+require "ui/table/select_all"
+require "ui/table/select"
 
 module Ui
 end

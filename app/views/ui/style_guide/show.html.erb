@@ -697,5 +697,86 @@
       </section>
     </article>
 
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Tables</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Table,
+            [
+              "Data 1",
+              "Data 2",
+              "Data 3",
+            ],
+            columns: [
+              ["Column 1", ->(data) { data } ],
+              ["Column 2", ->(data) { "Column 2 data" } ],
+              ["Column 3", ->(data) { "Column 3 data" } ],
+              ["Actions", ->(data) { cell(Ui::Buttons::Tertiary, 'More')} ],
+            ],
+            header: 'My title',
+            style: 'my-style'
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Selectable</h2>
+        </header>
+
+        <div class="space-y-8">
+          <%= cell(
+            Ui::Table,
+            [
+              "Data 1",
+              "Data 2",
+              "Data 3",
+            ],
+            columns: [
+              ["Column 1", ->(data) { data } ],
+              ["Column 2", ->(data) { "Column 2 data" } ],
+              ["Column 3", ->(data) { "Column 3 data" } ],
+              ["Actions", ->(data) { cell(Ui::Buttons::Tertiary, 'More')} ],
+            ],
+            header: 'Multi select',
+            style: 'my-style',
+            features: {
+              selectable: {
+                multiple: true
+              }
+            }
+          ).() %>
+
+          <%= cell(
+            Ui::Table,
+            [
+              "Data 1",
+              "Data 2",
+              "Data 3",
+            ],
+            columns: [
+              ["Column 1", ->(data) { data } ],
+              ["Column 2", ->(data) { "Column 2 data" } ],
+              ["Column 3", ->(data) { "Column 3 data" } ],
+              ["Actions", ->(data) { cell(Ui::Buttons::Tertiary, 'More')} ],
+            ],
+            header: 'Single select',
+            style: 'my-style',
+            features: {
+              selectable: {
+                multiple: false
+              }
+            }
+          ).() %>
+        </div>
+      </section>
   </article>
 </div>

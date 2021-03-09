@@ -8,7 +8,12 @@ module Ui
       private
 
       def title
-        model[0]
+        case
+        when model[0].is_a?(Proc)
+          model[0].call
+        else
+          model[0]
+        end
       end
     end
   end
