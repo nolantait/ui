@@ -47,5 +47,10 @@ require "ui/descriptive_list/item"
 require "ui/list"
 require "ui/list/item"
 
+require "ui/table"
+require "ui/table/select_all"
+require "ui/table/select"
+require "ui/table/sort"
+
 module Ui
 end
