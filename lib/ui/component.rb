@@ -1,5 +1,6 @@
 module Ui
   class Component < ::Cell::ViewModel
+    include Layout::External
     include ActionView::Helpers::FormHelper
     include ActionView::Helpers::TagHelper
     include ActionView::Context

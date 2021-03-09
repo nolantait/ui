@@ -56,5 +56,7 @@ require "ui/table/sort"
 
 require "ui/collapse"
 
+require "ui/tooltip"
+
 module Ui
 end
