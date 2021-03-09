@@ -929,5 +929,53 @@
         </div>
       </section>
     </article>
+
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Tooltip</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Hover</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Buttons::Primary,
+            'Hover me',
+            layout: Ui::Tooltip,
+            context: {
+              tooltip: {
+                content: ->() { content_tag(:p, 'This is an example of a tooltip.') },
+                header: ->() { content_tag(:p, 'Tooltip header', class: 'whitespace-nowrap') },
+              }
+            }
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Click</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Buttons::Primary,
+            'Click me',
+            layout: Ui::Tooltip,
+            context: {
+              tooltip: {
+                content: ->() { content_tag(:p, 'This is an example of a tooltip.') },
+                header: ->() { content_tag(:p, 'Tooltip header', class: 'whitespace-nowrap') },
+                mode: 'click'
+              }
+            }
+          ).() %>
+        </div>
+      </section>
+    </article>
+
   </article>
 </div>
