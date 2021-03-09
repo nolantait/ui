@@ -16,9 +16,17 @@ module Ui
     end
 
     def list_items
-      render_group(
-        model.map { |item| renderable.call(item) }
-      )
+      if list_data.any?
+        render_group(list_data)
+      else
+        render_empty
+      end
+    end
+
+    def list_data
+      model.map do |item|
+        renderable.call(item)
+      end
     end
 
     def header
@@ -53,6 +61,17 @@ module Ui
 
     def component_style
       'ui-list'
+    end
+
+    def render_empty
+      content_tag(:li, empty)
+    end
+
+    def empty
+      cell(
+        Ui::Empty,
+        nil
+      ).()
     end
   end
 end

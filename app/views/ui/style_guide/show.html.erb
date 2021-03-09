@@ -814,5 +814,98 @@
         </div>
       </section>
     </article>
+
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Empty</h1>
+      </header>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Empty,
+            nil,
+            caption: 'My title',
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Image</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Empty,
+            nil,
+            caption: content_tag(:p, 'My title', class: 'text-lg'),
+            image: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Hubble_Ultra_Deep_Field_part_d.jpg',
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Action</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Empty,
+            nil,
+            caption: content_tag(:p, 'My title', class: 'text-lg'),
+            icon: 'fas fa-inbox fa-5x text-gray-400',
+            actions: [
+              ->(_) {
+                cell(
+                  Ui::Buttons::Primary,
+                  'Click me'
+                ).()
+              }
+            ]
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>Table</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Table,
+            [],
+            columns: [
+              ["Column 1", ->(data) { data } ],
+              ["Column 2", ->(data) { "Column 2 data" } ],
+              ["Column 3", ->(data) { "Column 3 data" } ],
+              ["Actions", ->(data) { cell(Ui::Buttons::Tertiary, 'More')} ],
+            ],
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
+          <h2>List</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::List,
+            [],
+            header: 'My list',
+            footer: 'My list footer',
+          ).() %>
+        </div>
+      </section>
+
+    </article>
   </article>
 </div>

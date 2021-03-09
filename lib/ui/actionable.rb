@@ -13,7 +13,7 @@ module Ui
     end
 
     def has_actions?
-      options.fetch(:actions, false)
+      options.fetch(:actions, []).any?
     end
   end
 end

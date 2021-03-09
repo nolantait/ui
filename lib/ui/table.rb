@@ -31,11 +31,15 @@ module Ui
     end
 
     def table_rows
-      cell(
-        Ui::Table::Row,
-        collection: rows,
-        columns: columns
-      )
+      if rows.any?
+        cell(
+          Ui::Table::Row,
+          collection: rows,
+          columns: columns
+        )
+      else
+        render_empty
+      end
     end
 
     def table_data_attributes
@@ -138,6 +142,21 @@ module Ui
 
     def rows
       model
+    end
+
+    def render_empty
+      content_tag(:tr, empty)
+    end
+
+    def empty
+      content_tag(
+        :td,
+        cell(
+          Ui::Empty,
+          nil,
+        ).(),
+        colspan: columns.size
+      )
     end
   end
 end
