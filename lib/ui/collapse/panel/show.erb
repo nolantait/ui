@@ -1,0 +1,16 @@
+<article 
+  class="ui-collapse-panel" 
+  data-controller="collapsable"
+  data-collapsable-collapsed-value="false"
+  data-collapsable-hidden-class="hidden"
+  data-collapsable-collapsed-class="ui-collapsed">
+
+  <header data-action="click->collapsable#toggle">
+    <%= collapse_icon %>
+    <%= header %>
+  </header>
+
+  <div data-collapsable-target="content" class="ui-collapse-panel__content">
+    <%= content %>
+  </div>
+</article>

@@ -54,5 +54,7 @@ require "ui/table/select_all"
 require "ui/table/select"
 require "ui/table/sort"
 
+require "ui/collapse"
+
 module Ui
 end
