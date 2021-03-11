@@ -1,0 +1,19 @@
+<article
+  class="<%= style %>"
+  data-controller="notification"
+  data-notification-hidden-class="hidden">
+
+  <%= notification_icon %>
+
+  <section class="ui-notification__content">
+    <%= content %>
+
+    <% if has_actions? %>
+      <nav class="ui-notification__actions">
+        <%= actions %>
+      </nav>
+    <% end %>
+
+    <%= close_notification_link %>
+  </section>
+</article>

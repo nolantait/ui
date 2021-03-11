@@ -17,6 +17,7 @@ describe Ui::Empty, type: :cell do
             cell(
               Ui::Buttons::Tertiary,
               'My action',
+              path: 'https://google.ca'
             ).()
           }
         ]
