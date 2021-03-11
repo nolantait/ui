@@ -58,5 +58,7 @@ require "ui/collapse"
 
 require "ui/tooltip"
 
+require "ui/notification"
+
 module Ui
 end

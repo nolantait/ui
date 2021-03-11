@@ -977,5 +977,59 @@
       </section>
     </article>
 
+    <article class="style-guide__section" id="breadcrumbs">
+      <header>
+        <h1>Notifications</h1>
+      </header>
+
+      <section class="style-guide__example relative" id="type">
+        <header>
+          <h2>Basic</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Notification,
+            content_tag(
+              :header,
+              content_tag(:h3, 'My title', class: 'font-bold') +
+              content_tag(:p, 'This is a notification with some text', class: 'text-gray-500'),
+              class: 'space-y-2'
+            ),
+          ).() %>
+        </div>
+      </section>
+
+
+      <section class="style-guide__example relative" id="type">
+        <header>
+          <h2>Actions</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Notification,
+            content_tag(
+              :header,
+              content_tag(:h3, 'My title', class: 'font-bold') +
+              content_tag(:p, 'This is a notification with some text', class: 'text-gray-500'),
+              class: 'space-y-2'
+            ),
+            icon: 'fas fa-check-circle fa-lg text-green-500',
+            actions: [
+              ->(_) {
+                cell(
+                  Ui::Buttons::Primary,
+                  'Do something',
+                  size: :small,
+                  icon: 'fas fa-bullseye'
+                )
+              }
+            ]
+          ).() %>
+        </div>
+      </section>
+    </article>
+
   </article>
 </div>
