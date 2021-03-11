@@ -32,7 +32,6 @@ module Ui
         cell(
           Ui::Buttons::Secondary,
           nil,
-          path: '#',
           icon: 'fas fa-ellipsis-h',
           data: {
             action: "click->pagination#next"
@@ -50,7 +49,6 @@ module Ui
         cell(
           Ui::Buttons::Secondary,
           nil,
-          path: '#',
           icon: 'fas fa-ellipsis-h',
           data: {
             action: "click->pagination#previous"

@@ -49,7 +49,11 @@ module Ui
             class: button_classes
           )
         else
-          link_to(*args)
+          if path == '#'
+            content_tag(:button, args.first, **args.last)
+          else
+            link_to(*args)
+          end
         end
       end
 

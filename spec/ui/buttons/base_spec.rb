@@ -31,7 +31,7 @@ describe Ui::Buttons::Base, type: :cell do
       cell(
         described_class,
         'Hello',
-        path: '#',
+        path: 'https://google.ca',
         data: {
           something: 'test'
         },
@@ -53,7 +53,7 @@ describe Ui::Buttons::Base, type: :cell do
       cell(
         described_class,
         'Hello',
-        path: '#',
+        path: 'https://google.ca',
         data: {
           something: 'test'
         },
@@ -69,5 +69,4 @@ describe Ui::Buttons::Base, type: :cell do
       expect(result).to have_xpath "//a[@data-method='delete']"
     end
   end
-
 end
