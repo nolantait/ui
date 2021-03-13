@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors     = ["Nolan Tait"]
   spec.email       = ["nolanjtait@gmail.com"]
   spec.homepage    = "https://www.taiventures.ca"
-  spec.summary     = "Summary of Ui."
-  spec.description = "Description of Ui."
+  spec.summary     = "A collection of ui components implemented in cells."
+  spec.description = "A collection of ui components implemented in cells."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
