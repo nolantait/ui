@@ -5,7 +5,7 @@ require "ui/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
-  spec.name        = "ui"
+  spec.name        = "organism-ui"
   spec.version     = Ui::VERSION
   spec.authors     = ["Nolan Tait"]
   spec.email       = ["nolanjtait@gmail.com"]
