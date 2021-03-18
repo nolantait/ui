@@ -36,4 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec-cells', "~> 0.3.5"
   spec.add_development_dependency 'capybara', "~> 3.35.3"
   spec.add_development_dependency 'byebug', "~> 11.1.3"
+  spec.add_development_dependency 'sqlite3', "~> 1.4.2"
 end
