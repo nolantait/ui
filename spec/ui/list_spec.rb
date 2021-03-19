@@ -11,7 +11,12 @@ describe Ui::List, type: :cell do
         data,
         header: 'My header',
         style: 'my-style',
-        footer: 'My footer'
+        footer: 'My footer',
+        empty: cell(
+          Ui::Empty,
+          nil,
+          caption: 'I am empty'
+        ).()
       ).()
     }
 
@@ -38,7 +43,7 @@ describe Ui::List, type: :cell do
       let(:data) { Array.new }
 
       it 'renders an empty item' do
-        expect(result).to have_content "No data"
+        expect(result).to have_content "I am empty"
       end
     end
   end

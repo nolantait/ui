@@ -68,6 +68,10 @@ module Ui
     end
 
     def empty
+      options.fetch(:empty, default_empty)
+    end
+
+    def default_empty
       cell(
         Ui::Empty,
         nil
