@@ -12,6 +12,11 @@ describe Ui::List, type: :cell do
         header: 'My header',
         style: 'my-style',
         footer: 'My footer',
+        actions: [
+          ->(_) {
+            '<a href="#">My link</a>'
+          }
+        ],
         empty: cell(
           Ui::Empty,
           nil,
@@ -35,6 +40,8 @@ describe Ui::List, type: :cell do
         expect(result).to have_content "Item 2"
         expect(result).to have_content "Item 3"
         expect(result).to have_content "My footer"
+        expect(result).to have_link "My link"
+
         expect(result).to have_css ".my-style"
       end
     end
