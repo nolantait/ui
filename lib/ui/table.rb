@@ -1,10 +1,21 @@
 require "ui/table/header"
 require "ui/table/row"
+require "ui/table/vertical"
 
 module Ui
   class Table < Component
     include Actionable
     include Stylable
+    include ::Cell::Builder
+
+    builds do |model, options|
+      case options.fetch(:orientation, 'horizontal')
+      when 'vertical'
+        Ui::Table::Vertical
+      else
+        self
+      end
+    end
 
     def show
       render
@@ -24,17 +35,17 @@ module Ui
     def table_headers
       content_tag(:tr) do
         cell(
-          Ui::Table::Header,
+          header_renderer,
           collection: columns
         ).()
       end
     end
 
     def table_rows
-      if rows.any?
+      if model.any?
         cell(
-          Ui::Table::Row,
-          collection: rows,
+          row_renderer,
+          collection: model,
           columns: columns
         )
       else
@@ -87,10 +98,6 @@ module Ui
       ) if options[:footer]
     end
 
-    def component_style
-      "ui-table"
-    end
-
     def columns
       @columns ||= options.fetch(:columns, Array.new).tap do |columns|
         columns.unshift(selectable_column) if selectable?
@@ -140,8 +147,12 @@ module Ui
       options.fetch(:features, Hash.new)
     end
 
-    def rows
-      model
+    def row_renderer
+      Ui::Table::Row
+    end
+
+    def header_renderer
+      Ui::Table::Header
     end
 
     def render_empty
@@ -157,6 +168,10 @@ module Ui
         ).(),
         colspan: columns.size
       )
+    end
+
+    def component_style
+      "ui-table"
     end
   end
 end

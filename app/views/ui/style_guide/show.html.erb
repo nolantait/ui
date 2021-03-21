@@ -729,6 +729,32 @@
 
       <section class="style-guide__example" id="type">
         <header>
+          <h2>Vertical</h2>
+        </header>
+
+        <div class="space-y-4">
+          <%= cell(
+            Ui::Table,
+            [
+              "Data 1",
+              "Data 2",
+              "Data 3",
+            ],
+            columns: [
+              ["", ->(data) { data } ],
+              ["Column 2", ->(data) { "Column 2 data" } ],
+              ["Column 3", ->(data) { "Column 3 data" } ],
+              ["Actions", ->(data) { cell(Ui::Buttons::Tertiary, 'More')} ],
+            ],
+            header: 'My title',
+            orientation: 'vertical',
+            style: 'my-style'
+          ).() %>
+        </div>
+      </section>
+
+      <section class="style-guide__example" id="type">
+        <header>
           <h2>Selectable</h2>
         </header>
 

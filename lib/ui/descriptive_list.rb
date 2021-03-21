@@ -25,14 +25,14 @@ module Ui
       content_tag(
         :header,
         render_group([
-          content_tag(:h2, title),
-          content_tag(:nav, actions)
+          options[:header],
+          actions
         ])
-      ) if title || has_actions?
+      ) if display_header?
     end
 
-    def title
-      options[:title]
+    def display_header?
+      options[:header] || has_actions?
     end
 
     def items

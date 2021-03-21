@@ -14,7 +14,7 @@ describe Ui::DescriptiveList, type: :cell do
           ["Street address", "1233 Fake Street"],
           ["Status", ->() { '<i class="fas fa-ellipsis-h"></i>' }]
         ],
-        title: 'My title',
+        header: 'My title',
       ).()
     }
 

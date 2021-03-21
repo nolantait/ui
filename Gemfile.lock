@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    organism-ui (0.2.13)
+    organism-ui (0.2.14)
       cells-erb (~> 0.1.0)
       cells-rails (~> 0.1.3)
       dry-struct (~> 1.4.0)

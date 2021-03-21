@@ -16,6 +16,7 @@ describe Ui::Table, type: :cell do
         ],
         header: 'My title',
         style: 'my-style',
+        orientation: orientation,
         features: {
           selectable: {
             multiple: true
@@ -24,32 +25,69 @@ describe Ui::Table, type: :cell do
       ).()
     }
 
-    context 'with data' do
-      let(:data) {
-        [
-          "Data 1",
-          "Data 2",
-          "Data 3",
-        ]
-      }
+    context 'in a horizontal table' do
+      let(:orientation) { 'horizontal' }
 
-      it 'renders the menu items' do
-        expect(result).to have_content "My title"
-        expect(result).to have_content "Data 1"
-        expect(result).to have_content "Data 2"
-        expect(result).to have_content "Data 3"
+      context 'with data' do
+        let(:data) {
+          [
+            "Data 1",
+            "Data 2",
+            "Data 3",
+          ]
+        }
 
-        expect(result).to have_content "Column 2 data"
-        expect(result).to have_content "Column 3 data"
-        expect(result).to have_css ".my-style"
+        it 'renders the menu items' do
+          expect(result).to have_content "My title"
+          expect(result).to have_content "Data 1"
+          expect(result).to have_content "Data 2"
+          expect(result).to have_content "Data 3"
+
+          expect(result).to have_content "Column 2 data"
+          expect(result).to have_content "Column 3 data"
+          expect(result).to have_css ".my-style"
+        end
+      end
+
+      context 'without data' do
+        let(:data) { Array.new }
+
+        it 'renders an empty row' do
+          expect(result).to have_content 'No data'
+        end
       end
     end
 
-    context 'without data' do
-      let(:data) { Array.new }
+    context 'in a vertical table' do
+      let(:orientation) { 'vertical' }
 
-      it 'renders an empty row' do
-        expect(result).to have_content 'No data'
+      context 'with data' do
+        let(:data) {
+          [
+            "Data 1",
+            "Data 2",
+            "Data 3",
+          ]
+        }
+
+        it 'renders the menu items' do
+          expect(result).to have_content "My title"
+          expect(result).to have_content "Data 1"
+          expect(result).to have_content "Data 2"
+          expect(result).to have_content "Data 3"
+
+          expect(result).to have_content "Column 2 data"
+          expect(result).to have_content "Column 3 data"
+          expect(result).to have_css ".my-style"
+        end
+      end
+
+      context 'without data' do
+        let(:data) { Array.new }
+
+        it 'renders an empty row' do
+          expect(result).to have_content 'No data'
+        end
       end
     end
   end
