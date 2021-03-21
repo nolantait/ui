@@ -33,9 +33,23 @@ module Ui
     end
 
     def table_headers
+      custom_header_renderer.is_a?(Proc) ?
+        custom_table_headers :
+        default_table_headers
+    end
+
+    def custom_table_headers
+      render_group(
+        columns.map do |column|
+          custom_header_renderer.call(column)
+        end
+      )
+    end
+
+    def default_table_headers
       content_tag(:tr) do
         cell(
-          header_renderer,
+          Ui::Table::Header,
           collection: columns
         ).()
       end
@@ -43,30 +57,52 @@ module Ui
 
     def table_rows
       if model.any?
-        cell(
-          row_renderer,
-          collection: model,
-          columns: columns
-        )
+        custom_row_renderer.is_a?(Proc) ?
+          custom_table_rows :
+          default_table_rows
       else
         render_empty
       end
     end
 
+    def custom_table_rows
+      render_group(
+        model.map do |row|
+          custom_row_renderer.call(row, columns)
+        end
+      )
+    end
+
+    def default_table_rows
+      cell(
+        Ui::Table::Row,
+        collection: model,
+        columns: columns
+      ).()
+    end
+
     def table_data_attributes
       {
         controller: table_controllers,
-        "selectable-selected-value": "[]",
-        "selectable-type-value": multi_select? ? 'many' : 'one'
-      }
+      }.tap do |hash|
+        if selectable?
+          hash["selectable-selected-value"] = "[]"
+          hash["selectable-type-value"] = multi_select? ? 'many' : 'one'
+        end
+      end
     end
 
     def table_body_data_attributes
       {
         controller: table_body_controllers,
-        "sortable-update-url-value": sortable_options.fetch(:update_url, '#'),
-        "sortable-input-name-value": sortable_options.fetch(:input_name, "object[position]")
-      }
+      }.tap do |hash|
+        if sortable?
+          hash["sortable-update-url-value"] =
+            sortable_options.fetch(:update_url, '#')
+          hash["sortable-input-name-value"] =
+            sortable_options.fetch(:input_name, "object[position]")
+        end
+      end
     end
 
     def table_controllers
@@ -147,12 +183,12 @@ module Ui
       options.fetch(:features, Hash.new)
     end
 
-    def row_renderer
-      Ui::Table::Row
+    def custom_row_renderer
+      options.fetch(:row_renderer, nil)
     end
 
-    def header_renderer
-      Ui::Table::Header
+    def custom_header_renderer
+      options.fetch(:header_renderer, nil)
     end
 
     def render_empty
