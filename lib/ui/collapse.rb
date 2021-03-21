@@ -13,7 +13,8 @@ module Ui
     def panels
       cell(
         Ui::Collapse::Panel,
-        collection: model
+        collection: model,
+        actions: options[:actions]
       ).()
     end
 

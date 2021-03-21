@@ -1,6 +1,8 @@
 module Ui
   class Collapse < Component
     class Panel < Component
+      include Actionable
+
       def show
         render
       end
