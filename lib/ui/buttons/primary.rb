@@ -3,8 +3,11 @@ module Ui
     class Primary < Base
       private
 
-      def style
-        'button--primary'
+      def component_style
+        [
+          'button--primary',
+          super
+        ].flatten
       end
     end
   end

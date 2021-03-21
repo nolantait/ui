@@ -3,8 +3,11 @@ module Ui
     class Secondary < Base
       private
 
-      def style
-        'button--secondary'
+      def component_style
+        [
+          'button--secondary',
+          super
+        ].flatten
       end
     end
   end

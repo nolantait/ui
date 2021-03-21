@@ -1,6 +1,8 @@
 module Ui
   module Buttons
     class Base < Component
+      include Stylable
+
       def show
         display(
           text_with_icon(icon),
@@ -46,7 +48,7 @@ module Ui
             :button,
             args.first,
             disabled: true,
-            class: button_classes
+            class: style
           )
         else
           if path == '#'
@@ -69,15 +71,6 @@ module Ui
         'fas fa-trash'
       end
 
-      def button_classes
-        [
-          "button",
-          style,
-          size,
-          options.fetch(:style, '')
-        ].compact.join(' ')
-      end
-
       def size
         case options[:size]
         when :small
@@ -92,25 +85,40 @@ module Ui
       end
 
       def text_with_icon(icon)
-        if icon
-          content_tag(
-            :span,
-            render_group([
-              content_tag(:i, nil, class: icon),
-              text
-            ].compact)
-          )
-        else
-          text
+        order = [text].tap do |array|
+          case icon_position
+          when 'end'
+            array.push(display_icon(icon))
+          else
+            array.unshift(display_icon(icon))
+          end
         end
+
+        render_group(order)
       end
 
-      def style
-        ''
+      def display_icon(icon)
+        content_tag(:i, nil, class: icon) unless icon.blank?
+      end
+
+      def component_style
+        [
+          'button',
+          size,
+        ].join(' ')
       end
 
       def icon
-        options[:icon]
+        icon_options.fetch(:style, '')
+      end
+
+      def icon_position
+        icon_options.fetch(:position, 'start')
+      end
+
+      def icon_options
+        opts = options.fetch(:icon, {})
+        opts.is_a?(Hash) ? opts : { style: opts }
       end
 
       def path
@@ -135,7 +143,7 @@ module Ui
 
       def button_options
         {
-          class: button_classes,
+          class: style,
           disabled: disabled?,
           data: data,
           method: method
