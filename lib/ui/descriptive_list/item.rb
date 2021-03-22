@@ -5,19 +5,33 @@ module Ui
         content_tag(
           :div,
           render_group([
-            content_tag(:dt, title),
+            content_tag(:dt, item_title),
             content_tag(:dd, value)
           ]),
           class: 'ui-descriptive-list__item'
         )
       end
 
-      def title
+      def value
+        render_group([
+          display(item_value)
+        ])
+      end
+
+      def display(value)
+        if value.is_a?(Proc)
+          value.call
+        else
+          value
+        end
+      end
+
+      def item_title
         model[0]
       end
 
-      def value
-        model[1].try(:call) || model[1]
+      def item_value
+        model[1]
       end
     end
   end

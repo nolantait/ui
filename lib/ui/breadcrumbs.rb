@@ -1,9 +1,9 @@
 module Ui
   class Breadcrumbs < Component
+    include Stylable
+
     def show
-      content_tag(:nav, class: 'ui-breadcrumbs') do
-        breadcrumb_links
-      end
+      content_tag(:nav, render_group(breadcrumb_links.flatten), class: style)
     end
 
     private
@@ -13,13 +13,11 @@ module Ui
     end
 
     def breadcrumb_links
-      render_group(
-        breadcrumbs.map.with_index do |crumb, index|
-          [item_renderer.call(crumb)].tap do |renderable|
-            renderable.unshift(delimiter) unless index == 0
-          end
-        end.flatten
-      )
+      breadcrumbs.map.with_index do |crumb, index|
+        [item_renderer.call(crumb)].tap do |array|
+          array.unshift(delimiter) unless index == 0
+        end
+      end
     end
 
     def delimiter
@@ -27,7 +25,20 @@ module Ui
     end
 
     def item_renderer
-      options[:item_renderer] || Ui::Breadcrumbs::Breadcrumb
+      options[:item_renderer] || default_item_renderer
+    end
+
+    def default_item_renderer
+      ->(item) {
+        cell(
+          Ui::Breadcrumbs::Breadcrumb,
+          item
+        ).()
+      }
+    end
+
+    def component_style
+      'ui-breadcrumbs'
     end
   end
 end
