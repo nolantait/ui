@@ -6,7 +6,7 @@ module Ui
           :div,
           render_group([
             content_tag(:dt, title),
-            content_tag(:dd, value.html_safe)
+            content_tag(:dd, value)
           ]),
           class: 'ui-descriptive-list__item'
         )

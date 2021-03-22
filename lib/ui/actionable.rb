@@ -21,7 +21,7 @@ module Ui
     end
 
     def has_actions?
-      options.fetch(:actions, []).any?
+      actions_list.any?
     end
   end
 end

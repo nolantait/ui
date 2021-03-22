@@ -207,7 +207,7 @@ module Ui
     end
 
     def component_style
-      "ui-table"
+      "ui-table ui-table--horizontal"
     end
   end
 end

@@ -9,9 +9,7 @@ module Ui
       def show
         content_tag(
           :span,
-          link_to(path) do
-            title.html_safe
-          end,
+          link_to(path, title),
           class: style
         )
       end
