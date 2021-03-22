@@ -40,6 +40,22 @@ module Ui
         )
       end
 
+      def phone
+        display(
+          text_with_icon(phone_icon),
+          "tel:#{path}",
+          button_options
+        )
+      end
+
+      def email
+        mail_to(
+          path,
+          text_with_icon(email_icon),
+          button_options
+        )
+      end
+
       private
 
       def display(*args)
@@ -69,6 +85,14 @@ module Ui
 
       def destroy_icon
         'fas fa-trash'
+      end
+
+      def phone_icon
+        'fas fa-phone'
+      end
+
+      def email_icon
+        'fas fa-envelope'
       end
 
       def size
