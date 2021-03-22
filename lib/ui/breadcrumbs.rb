@@ -13,11 +13,13 @@ module Ui
     end
 
     def breadcrumb_links
-      breadcrumbs.map.with_index do |crumb, index|
-        [item_renderer.call(crumb)].tap do |renderable|
-          renderable.unshift(delimiter) unless index == 0
-        end
-      end.flatten.join(' ').html_safe
+      render_group(
+        breadcrumbs.map.with_index do |crumb, index|
+          [item_renderer.call(crumb)].tap do |renderable|
+            renderable.unshift(delimiter) unless index == 0
+          end
+        end.flatten
+      )
     end
 
     def delimiter

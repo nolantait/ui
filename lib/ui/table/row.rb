@@ -1,11 +1,17 @@
 module Ui
   class Table < Component
     class Row < Component
+      include Stylable
+
       def show
-        content_tag(:tr, render_group(table_data))
+        content_tag(:tr, render_group(table_data), class: style)
       end
 
       private
+
+      def component_style
+        'ui-table__row'
+      end
 
       def table_data
         columns.map do |column|

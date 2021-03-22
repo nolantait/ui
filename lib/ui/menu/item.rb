@@ -24,7 +24,7 @@ module Ui
       private
 
       def render_item
-        model.html_safe
+        model
       end
 
       def depth

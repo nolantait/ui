@@ -1,13 +1,19 @@
 module Ui
   module Actionable
+    Actions = Types::Array.default([].freeze).of(Types::Callable)
+
     def actions
       content_tag(:nav, class: 'ui-actions', role: 'navigation') do
         render_group(
-          options.fetch(:actions, Array.new).map do |action|
+          Actions[actions_list].map do |action|
             action.call(model)
           end
         )
       end
+    end
+
+    def actions_list
+      options.fetch(:actions, Array.new) || Array.new
     end
 
     def actions_length
@@ -15,7 +21,7 @@ module Ui
     end
 
     def has_actions?
-      options.fetch(:actions, []).any?
+      actions_list.any?
     end
   end
 end

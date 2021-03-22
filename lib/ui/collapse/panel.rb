@@ -1,6 +1,8 @@
 module Ui
   class Collapse < Component
     class Panel < Component
+      include Actionable
+
       def show
         render
       end
@@ -18,11 +20,11 @@ module Ui
       end
 
       def header
-        content_tag(:p, display(model[0]))
+        display(model[0])
       end
 
       def content
-        content_tag(:p, display(model[1]))
+        display(model[1])
       end
 
       def display(item)

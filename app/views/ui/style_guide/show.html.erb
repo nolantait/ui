@@ -677,7 +677,7 @@
             renderable: ->(item) {
               content_tag(
                 :div,
-                [
+                render_group([
                   content_tag(:p, item),
                   content_tag(
                     :nav,
@@ -688,7 +688,7 @@
                       size: :small
                     ).call(:edit)
                   )
-                ].join(' ').html_safe,
+                ]),
                 class: 'flex flex-row justify-between items-center p-4'
               )
             }
@@ -774,6 +774,8 @@
             ],
             header: 'Multi select',
             style: 'my-style',
+            row_renderer: ->(row, columns) {
+            },
             features: {
               selectable: {
                 multiple: true

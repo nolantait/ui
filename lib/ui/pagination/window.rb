@@ -9,7 +9,7 @@ module Ui
           :ul,
           render_group([
             previous_window,
-            page_links.html_safe,
+            page_links,
             next_window
           ]),
           class: 'ui-pagination__window',
@@ -58,15 +58,17 @@ module Ui
 
 
       def page_links
-        pages.inject('') do |content, page|
-          content += content_tag(
-            :li,
-            cell(
-              Ui::Pagination::PageLink,
-              page
-            ).()
-          )
-        end
+        render_group(
+          pages.map do |page|
+            content += content_tag(
+              :li,
+              cell(
+                Ui::Pagination::PageLink,
+                page
+              ).()
+            )
+          end
+        )
       end
 
       def last_window?

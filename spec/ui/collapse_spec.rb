@@ -12,7 +12,12 @@ describe Ui::Collapse, type: :cell do
           ["Header 1", "Content 1"],
           ["Header 2", ->() { "Content 2" }]
         ],
-        style: 'my-style'
+        style: 'my-style',
+        actions: [
+          ->(_) {
+            '<a href="#">My action</a>'
+          }
+        ]
       ).()
     }
 
@@ -22,6 +27,7 @@ describe Ui::Collapse, type: :cell do
       expect(result).to have_content "Content 1"
       expect(result).to have_content "Content 2"
       expect(result).to have_css ".my-style"
+      expect(result).to have_link 'My action'
     end
   end
 end

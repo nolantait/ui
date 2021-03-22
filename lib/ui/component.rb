@@ -9,7 +9,12 @@ module Ui
     self.view_paths << VIEWPATH
 
     def capture(*args)
-      yield(*args).html_safe
+      content = yield(*args)
+      if content.is_a?(String)
+        content.html_safe
+      else
+        content
+      end
     end
 
     def render_group(items)
