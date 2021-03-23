@@ -25,7 +25,7 @@ module Ui
 
     def list_data
       model.map do |item|
-        renderable.call(item)
+        item_renderer.call(item)
       end
     end
 
@@ -46,8 +46,8 @@ module Ui
       ) if options[:footer]
     end
 
-    def renderable
-      Renderable[options.fetch(:renderable, default_renderable)]
+    def item_renderer
+      Renderable[options.fetch(:item_renderer, default_renderable)]
     end
 
     def default_renderable
