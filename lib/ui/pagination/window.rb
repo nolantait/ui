@@ -60,7 +60,7 @@ module Ui
       def page_links
         render_group(
           pages.map do |page|
-            content += content_tag(
+            content_tag(
               :li,
               cell(
                 Ui::Pagination::PageLink,

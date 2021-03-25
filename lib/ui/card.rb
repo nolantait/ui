@@ -16,9 +16,7 @@ module Ui
     end
 
     def card_actions
-      content_tag(:nav, class: "ui-card__controls") do
-        actions
-      end if has_actions?
+      actions if has_actions?
     end
 
     def title

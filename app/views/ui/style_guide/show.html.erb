@@ -674,11 +674,10 @@
                 ).()
               }
             ],
-            renderable: ->(item) {
+            item_renderer: ->(item) {
               content_tag(
                 :div,
-                render_group([
-                  content_tag(:p, item),
+                  content_tag(:p, item) +
                   content_tag(
                     :nav,
                     cell(
@@ -687,8 +686,7 @@
                       path: '#',
                       size: :small
                     ).call(:edit)
-                  )
-                ]),
+                  ),
                 class: 'flex flex-row justify-between items-center p-4'
               )
             }

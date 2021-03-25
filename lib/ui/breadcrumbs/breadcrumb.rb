@@ -1,6 +1,8 @@
 module Ui
   class Breadcrumbs < Component
     class Breadcrumb < Component
+      include Stylable
+
       property :name
       property :path
       property :current?
@@ -9,7 +11,7 @@ module Ui
       def show
         content_tag(
           :span,
-          link_to(path, title),
+          link_to(render_group(title), path),
           class: style
         )
       end
@@ -17,17 +19,19 @@ module Ui
       private
 
       def title
-        [name].tap do |array|
-          array.unshift(content_tag(:i, nil, class: icon)) if model.try(:icon)
-        end.join(' ')
+        [content_tag(:span, name)].tap do |array|
+          array.unshift(content_tag(:i, nil, class: icon)) if has_icon? 
+        end
       end
 
-      def style
-        [
-          'breadcrumb'
-        ].tap do |array|
-          array << 'breadcrumb--current' if current?
-        end
+      def has_icon?
+        model.try(:icon)
+      end
+
+      def component_style
+        ['ui-breadcrumb'].tap do |array|
+          array << 'ui-breadcrumb--current' if current?
+        end.join(' ')
       end
     end
   end

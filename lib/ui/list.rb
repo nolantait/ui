@@ -4,6 +4,7 @@ module Ui
     include Actionable
 
     Renderable = Types.Interface(:call)
+    ListItems = Types.Interface(:each, :map, :any?)
 
     def show
       render
@@ -11,21 +12,32 @@ module Ui
 
     private
 
+    def list_data
+      begin
+        ListItems[model]
+      rescue Dry::Types::ConstraintError
+        raise Ui::Errors::InvalidListItems.new(
+          "List items for #{self.class.to_s} are invalid. Ensure you are passing " \
+          "an empty array or array of items that will be passed to the item renderer"
+        )
+      end
+    end
+
     def list
       content_tag(:ul, list_items)
     end
 
     def list_items
-      if list_data.any?
-        render_group(list_data)
+      if rendered_items.any?
+        render_group(rendered_items)
       else
         render_empty
       end
     end
 
-    def list_data
-      model.map do |item|
-        renderable.call(item)
+    def rendered_items
+      list_data.map do |item|
+        item_renderer.call(item)
       end
     end
 
@@ -46,8 +58,8 @@ module Ui
       ) if options[:footer]
     end
 
-    def renderable
-      Renderable[options.fetch(:renderable, default_renderable)]
+    def item_renderer
+      Renderable[options.fetch(:item_renderer, default_renderable)]
     end
 
     def default_renderable
