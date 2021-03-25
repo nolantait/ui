@@ -2,6 +2,8 @@ module Ui
   class Breadcrumbs < Component
     include Stylable
 
+    Crumbs = Types::Array.of(Types.Interface(:name, :path, :current?))
+
     def show
       content_tag(:nav, render_group(breadcrumb_links.flatten), class: style)
     end
@@ -9,7 +11,14 @@ module Ui
     private
 
     def breadcrumbs
-      Types::Array.of(Crumb)[model]
+      begin
+        Crumbs[model]
+      rescue Dry::Types::ConstraintError
+        raise Ui::Errors::InvalidBreadcrumbs.new(
+          "Breadcrumbs for #{self.class.to_s} are invalid. Ensure you are passing " \
+          "an array of Ui::Breadcrumbs::Crumb objects. #{model.class.to_s} was found instead."
+        )
+      end
     end
 
     def breadcrumb_links

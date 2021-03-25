@@ -14,8 +14,14 @@ module Ui
       cell(
         Ui::Collapse::Panel,
         collection: model,
-        actions: options[:actions]
+        **panel_options,
       ).()
+    end
+
+    def panel_options
+      Hash.new.tap do |hash|
+        hash[:actions] = options[:actions] if options[:actions]
+      end
     end
 
     def component_style
