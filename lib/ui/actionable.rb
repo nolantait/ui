@@ -2,11 +2,11 @@ module Ui
   module Actionable
     Actions = Types::Array.default([].freeze).of(Types::Callable)
 
-    def actions
+    def actions(object = model)
       content_tag(:nav, class: 'ui-actions', role: 'navigation') do
         render_group(
           actions_list.map do |action|
-            action.call(model)
+            action.call(object)
           end
         )
       end

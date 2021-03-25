@@ -1,6 +1,6 @@
 module Ui
   module Errors
-    class Base < StandardError
+    class InvalidListItems < Base
     end
   end
 end

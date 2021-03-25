@@ -4,10 +4,10 @@ require "cells-erb"
 require "cells-rails"
 require 'dry-struct'
 
+require "ui/errors/base"
+
 require "ui/types"
 require "ui/value"
-
-require "ui/errors/base"
 
 require "ui/actionable"
 require "ui/stylable"
