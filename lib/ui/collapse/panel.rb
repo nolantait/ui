@@ -2,6 +2,7 @@ module Ui
   class Collapse < Component
     class Panel < Component
       include Actionable
+      include Stylable
 
       def show
         render
@@ -33,6 +34,10 @@ module Ui
         else
           item
         end
+      end
+
+      def component_style
+        "ui-collapse-panel"
       end
     end
   end
