@@ -23,6 +23,14 @@ module Ui
       model
     end
 
+    def has_title?
+      model && !model.blank?
+    end
+
+    def has_extra?
+      extra
+    end
+
     def extra
       options[:extra]
     end
