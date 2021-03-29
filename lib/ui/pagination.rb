@@ -75,7 +75,7 @@ module Ui
     end
 
     def current_page
-      pages.find(&:current)
+      pages.find(&:current) || pages.first
     end
 
     def next_page

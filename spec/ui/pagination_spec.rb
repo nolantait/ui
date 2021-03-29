@@ -26,6 +26,8 @@ describe Ui::Pagination, type: :cell do
         expect(result).to have_link "2"
         expect(result).to have_link "3"
         expect(result).to have_link "4"
+        expect(result).to have_css '.ui-pagination__page--current'
+        expect(result).to have_css '.ui-pagination__page'
 
         expect(result).to have_xpath "//button[@disabled]"
       end
