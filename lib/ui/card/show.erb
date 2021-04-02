@@ -1,4 +1,4 @@
-<article class="<%= style %>">
+<%= component do %>
   <%= cover %>
 
   <% if has_title? || has_extra? %>
@@ -13,4 +13,4 @@
   </section>
 
   <%= card_actions %>
-</article>
+<% end %>

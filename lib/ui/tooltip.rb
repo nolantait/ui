@@ -1,4 +1,5 @@
 module Ui
+  # An on hover tooltip to show helpful ui hints or information
   class Tooltip < Component
     def show(&block)
       render(&block)
@@ -30,6 +31,18 @@ module Ui
 
     def mode
       tooltip.fetch(:mode, 'hover')
+    end
+
+    def component_data_attributes
+      {
+        action: 'click->tooltip#toggle',
+        controller: 'tooltip',
+        tooltip: {
+          'hidden-class': 'hidden',
+          'mode-value': mode,
+          'expanded-value': false
+        }
+      }
     end
   end
 end

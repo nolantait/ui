@@ -1,7 +1,6 @@
 module Ui
+  # A page header for titles and page specific actions
   class PageHeader < Component
-    include Ui::Actionable
-
     def show(&block)
       render(&block)
     end
@@ -17,13 +16,19 @@ module Ui
     end
 
     def back_button
+      return unless options[:back]
+
       link_to options[:back] do
         content_tag(:i, nil, class: 'fas fa-arrow-left')
-      end if options[:back]
+      end
     end
 
     def breadcrumbs
-      options.fetch(:breadcrumbs, Proc.new{}).call
+      options.fetch(:breadcrumbs, -> {}).call
+    end
+
+    def component_style
+      'ui-page-header'
     end
   end
 end

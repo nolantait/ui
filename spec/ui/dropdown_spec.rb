@@ -5,7 +5,7 @@ describe Ui::Dropdown, type: :cell do
   let(:result) { html }
 
   context '#show' do
-    let(:html) {
+    let(:html) do
       cell(
         Ui::Dropdown,
         cell(
@@ -26,12 +26,12 @@ describe Ui::Dropdown, type: :cell do
           icon: 'fas fa-caret-down'
         ).()
       end
-    }
+    end
 
     it 'renders the dropdown' do
-      expect(result).to have_content "Item 1"
-      expect(result).to have_content "Item 2"
-      expect(result).to have_content "Hover me"
+      expect(result).to have_content 'Item 1'
+      expect(result).to have_content 'Item 2'
+      expect(result).to have_content 'Hover me'
     end
   end
 end

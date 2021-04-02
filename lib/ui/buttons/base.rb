@@ -1,5 +1,9 @@
 module Ui
   module Buttons
+    # Base button class for three different base styles:
+    # - Ui::Buttons::Primary
+    # - Ui::Buttons::Secondary
+    # - Ui::Buttons::Tertiary
     class Base < Component
       include Stylable
 
@@ -7,7 +11,7 @@ module Ui
         display(
           text_with_icon(icon),
           path,
-          button_options,
+          button_options
         )
       end
 
@@ -36,7 +40,7 @@ module Ui
             data: {
               confirm: 'Are you sure?'
             }
-          }),
+          })
         )
       end
 
@@ -60,19 +64,21 @@ module Ui
 
       def display(*args)
         if disabled?
-          content_tag(
-            :button,
-            args.first,
-            disabled: true,
-            class: style
-          )
+          display_disabled_button(*args)
+        elsif path == '#'
+          content_tag(:button, args.first, **args.last)
         else
-          if path == '#'
-            content_tag(:button, args.first, **args.last)
-          else
-            link_to(*args)
-          end
+          link_to(*args)
         end
+      end
+
+      def display_disabled_button(*args)
+        content_tag(
+          :button,
+          args.first,
+          disabled: true,
+          class: style
+        )
       end
 
       def new_icon
@@ -128,7 +134,7 @@ module Ui
       def component_style
         [
           'button',
-          size,
+          size
         ].join(' ')
       end
 
@@ -146,30 +152,26 @@ module Ui
       end
 
       def path
-        options[:path] || '#'
-      end
-
-      def data
-        options[:data] || {}
+        options.fetch(:path, '#')
       end
 
       def target
-        options[:target]
+        options.fetch(:target)
       end
 
       def method
-        options[:method] || :get
+        options.fetch(:method, :get)
       end
 
       def disabled?
-        options[:disabled]
+        options.fetch(:disabled, false)
       end
 
       def button_options
         {
           class: style,
           disabled: disabled?,
-          data: data,
+          data: data_attributes,
           method: method
         }
       end

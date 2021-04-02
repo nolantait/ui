@@ -1,4 +1,4 @@
-<article class="ui-page-header">
+<%= component do %>
   <%= breadcrumbs %>
 
   <header>
@@ -15,4 +15,4 @@
   </header>
 
   <%= yield if block_given? %>
-</article>
+<% end %>

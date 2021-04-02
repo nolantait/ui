@@ -1,10 +1,4 @@
-<article 
-  class="<%= style %>"
-  data-controller="collapsable"
-  data-collapsable-collapsed-value="true"
-  data-collapsable-hidden-class="hidden"
-  data-collapsable-collapsed-class="ui-collapsed">
-
+<%= component do %>
   <header data-action="click->collapsable#toggle" class="ui-collapse-panel__header">
     <%= collapse_icon %>
     <%= header %>
@@ -14,4 +8,4 @@
   <section data-collapsable-target="content" class="ui-collapse-panel__content">
     <%= content %>
   </section>
-</article>
+<% end %>

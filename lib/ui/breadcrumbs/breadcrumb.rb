@@ -1,5 +1,6 @@
 module Ui
   class Breadcrumbs < Component
+    # An individual breadcrumb
     class Breadcrumb < Component
       include Stylable
 
@@ -9,22 +10,20 @@ module Ui
       property :icon
 
       def show
-        content_tag(
-          :span,
-          link_to(render_group(title), path),
-          class: style
-        )
+        component(:span) do
+          link_to(render_group(title), path)
+        end
       end
 
       private
 
       def title
         [content_tag(:span, name)].tap do |array|
-          array.unshift(content_tag(:i, nil, class: icon)) if has_icon? 
+          array.unshift(content_tag(:i, nil, class: icon)) if icon?
         end
       end
 
-      def has_icon?
+      def icon?
         model.try(:icon)
       end
 

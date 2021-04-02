@@ -1,9 +1,6 @@
 module Ui
   class Collapse < Component
     class Panel < Component
-      include Actionable
-      include Stylable
-
       def show
         render
       end
@@ -15,7 +12,7 @@ module Ui
           :div,
           icon('fas fa-chevron-down'),
           data: {
-            "collapsable-target": "icon"
+            'collapsable-target': 'icon'
           }
         )
       end
@@ -37,7 +34,20 @@ module Ui
       end
 
       def component_style
-        "ui-collapse-panel"
+        'ui-collapse-panel'
+      end
+
+      def component_data_attributes
+        {
+          controller: 'collapsable',
+          collapsable: {
+            'hidden-class': 'hidden',
+            collapsed: {
+              value: 'true',
+              class: 'ui-collapsed'
+            }
+          }
+        }
       end
     end
   end

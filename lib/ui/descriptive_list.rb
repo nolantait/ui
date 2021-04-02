@@ -1,8 +1,5 @@
 module Ui
   class DescriptiveList < Component
-    include Actionable
-    include Stylable
-
     Directions = Types::String.enum(
       'horizontal',
       'vertical'
@@ -22,17 +19,19 @@ module Ui
     end
 
     def header
+      return unless display_header?
+
       content_tag(
         :header,
         render_group([
           options[:header],
           actions
         ])
-      ) if display_header?
+      )
     end
 
     def display_header?
-      options[:header] || has_actions?
+      options[:header] || actions?
     end
 
     def items

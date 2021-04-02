@@ -1,13 +1,13 @@
 module Ui
+  # A collection of steps for a Ui::Wizard
   class Steps < Component
-    include Stylable
-
+    # A value component for a step in a Ui::Wizard
     class Step < Value
       attribute :position, Types::Strict::Integer
       attribute :title, Types::Strict::String
       attribute? :icon, Types::Strict::String.default(''.freeze)
-      attribute? :current, Types::Strict::Bool.default(false.freeze)
-      attribute? :last, Types::Strict::Bool.default(false.freeze)
+      attribute? :current, Types::Strict::Bool.default(false)
+      attribute? :last, Types::Strict::Bool.default(false)
       attribute? :description, Types::Strict::String.default(''.freeze)
       attribute? :subtitle, Types::Strict::String.default(''.freeze)
       attribute? :status, Types::String.default('waiting'.freeze).enum(
@@ -51,7 +51,7 @@ module Ui
     end
 
     def component_style
-      ["ui-steps"].tap do |styles|
+      ['ui-steps'].tap do |styles|
         styles << "ui-steps--#{direction}"
       end
     end

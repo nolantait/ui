@@ -1,14 +1,13 @@
-require "ui/table/header"
-require "ui/table/row"
-require "ui/table/vertical"
+require 'ui/table/header'
+require 'ui/table/row'
+require 'ui/table/vertical'
 
 module Ui
+  # Renders tables using predefined data and columns
   class Table < Component
-    include Actionable
-    include Stylable
     include ::Cell::Builder
 
-    builds do |model, options|
+    builds do |_model, options|
       case options.fetch(:orientation, 'horizontal')
       when 'vertical'
         Ui::Table::Vertical
@@ -33,9 +32,11 @@ module Ui
     end
 
     def table_headers
-      custom_header_renderer.is_a?(Proc) ?
-        custom_table_headers :
+      if custom_header_renderer.is_a?(Proc)
+        custom_table_headers
+      else
         default_table_headers
+      end
     end
 
     def custom_table_headers
@@ -57,11 +58,17 @@ module Ui
 
     def table_rows
       if model.any?
-        custom_row_renderer.is_a?(Proc) ?
-          custom_table_rows :
-          default_table_rows
+        display_table_rows
       else
         render_empty
+      end
+    end
+
+    def display_table_rows
+      if custom_row_renderer.is_a?(Proc)
+        custom_table_rows
+      else
+        default_table_rows
       end
     end
 
@@ -86,8 +93,8 @@ module Ui
         controller: table_controllers,
       }.tap do |hash|
         if selectable?
-          hash["selectable-selected-value"] = "[]"
-          hash["selectable-type-value"] = multi_select? ? 'many' : 'one'
+          hash['selectable-selected-value'] = '[]'
+          hash['selectable-type-value'] = multi_select? ? 'many' : 'one'
         end
       end
     end
@@ -97,45 +104,49 @@ module Ui
         controller: table_body_controllers,
       }.tap do |hash|
         if sortable?
-          hash["sortable-update-url-value"] =
+          hash['sortable-update-url-value'] =
             sortable_options.fetch(:update_url, '#')
-          hash["sortable-input-name-value"] =
-            sortable_options.fetch(:input_name, "object[position]")
+          hash['sortable-input-name-value'] =
+            sortable_options.fetch(:input_name, 'object[position]')
         end
       end
     end
 
     def table_controllers
       [].tap do |array|
-        array << "selectable" if selectable?
+        array << 'selectable' if selectable?
       end.join(' ')
     end
 
     def table_body_controllers
       [].tap do |array|
-        array << "sortable" if sortable?
+        array << 'sortable' if sortable?
       end.join(' ')
     end
 
     def header
+      return unless options[:header] || actions
+
       content_tag(
         :header,
         render_group([
           options[:header],
           actions
         ])
-      ) if options[:header] || has_actions?
+      )
     end
 
     def footer
+      return unless options.fetch(:footer, false)
+
       content_tag(
         :footer,
         options[:footer]
-      ) if options[:footer]
+      )
     end
 
     def columns
-      @columns ||= options.fetch(:columns, Array.new).tap do |columns|
+      @columns ||= options.fetch(:columns, []).tap do |columns|
         columns.unshift(selectable_column) if selectable?
         columns.unshift(sortable_column) if sortable?
       end
@@ -143,14 +154,14 @@ module Ui
 
     def selectable_column
       [
-        ->() { select_all },
+        -> { select_all },
         ->(data) { cell(Ui::Table::Select, data, selectable_options) }
       ]
     end
 
     def sortable_column
       [
-        ->() { nil },
+        -> { nil },
         ->(data) { cell(Ui::Table::Sort, data, sortable_options) }
       ]
     end
@@ -180,7 +191,7 @@ module Ui
     end
 
     def features
-      options.fetch(:features, Hash.new)
+      options.fetch(:features, {})
     end
 
     def custom_row_renderer
@@ -200,14 +211,14 @@ module Ui
         :td,
         cell(
           Ui::Empty,
-          nil,
+          nil
         ).(),
         colspan: columns.size
       )
     end
 
     def component_style
-      "ui-table ui-table--horizontal"
+      'ui-table ui-table--horizontal'
     end
   end
 end

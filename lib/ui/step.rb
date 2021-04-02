@@ -1,7 +1,6 @@
 module Ui
+  # A renderer for a single Ui::Steps::Step value object
   class Step < Component
-    include Stylable
-
     property :status
     property :position
     property :last?
@@ -26,19 +25,21 @@ module Ui
     end
 
     def step_icon
-      if model.icon.blank?
-        case status
-        when 'finished'
-          icon('fas fa-check')
-        when 'processing'
-          position
-        when 'error'
-          icon('fas fa-times')
-        when 'waiting'
-          position
-        end
-      else
-        icon(model.icon)
+      return icon(model.icon) unless model.icon.blank?
+
+      icon_for_status(status)
+    end
+
+    def icon_for_status(status)
+      case status
+      when 'finished'
+        icon('fas fa-check')
+      when 'processing'
+        position
+      when 'error'
+        icon('fas fa-times')
+      when 'waiting'
+        position
       end
     end
 

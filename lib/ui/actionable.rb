@@ -1,4 +1,8 @@
 module Ui
+  # Included in every component. Handles passing through actions from a view.
+  # Actions can be things like buttons or links to display on a component.
+  # Admins might want different links than a user so you can pass them through
+  # options[:action]
   module Actionable
     Actions = Types::Array.default([].freeze).of(Types::Callable)
 
@@ -14,20 +18,19 @@ module Ui
 
     def actions_list
       begin
-        Actions[options.fetch(:actions, Array.new)]
+        Actions[options.fetch(:actions, [])]
       rescue Dry::Types::ConstraintError
-        raise Ui::Errors::InvalidActions.new(
-          "Actions for #{self.class.to_s} are invalid. Ensure you are passing " \
-          "an array of callable objects that will be passed a model"
-        )
+        raise Ui::Errors::InvalidActions,
+          "Actions for #{self.class} are invalid. Ensure you are passing " \
+          'an array of callable objects that will be passed a model'
       end
     end
 
     def actions_length
-      options.fetch(:actions, Array.new).size
+      options.fetch(:actions, []).size
     end
 
-    def has_actions?
+    def actions?
       actions_list.any?
     end
   end

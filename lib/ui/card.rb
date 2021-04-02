@@ -1,8 +1,5 @@
 module Ui
   class Card < Component
-    include Actionable
-    include Stylable
-
     def show(&block)
       render(&block)
     end
@@ -16,7 +13,7 @@ module Ui
     end
 
     def card_actions
-      actions if has_actions?
+      actions if actions?
     end
 
     def title

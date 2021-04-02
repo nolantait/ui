@@ -1,8 +1,6 @@
 module Ui
+  # Notifications for actions and events
   class Notification < Component
-    include Actionable
-    include Stylable
-
     def show
       render
     end
@@ -14,9 +12,11 @@ module Ui
     end
 
     def notification_icon
+      return unless options.fetch(:icon, false)
+
       content_tag(:span, class: 'ui-notification__icon') do
         icon(options[:icon])
-      end if options[:icon]
+      end
     end
 
     def close_notification_link
@@ -31,7 +31,14 @@ module Ui
     end
 
     def component_style
-      "ui-notification"
+      'ui-notification'
+    end
+
+    def component_data_attributes
+      {
+        controller: 'notification',
+        'notification-hidden-class': 'hidden'
+      }
     end
   end
 end

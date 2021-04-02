@@ -1,14 +1,7 @@
-<div
-  class="ui-tooltip"
-  data-controller="tooltip"
-  data-tooltip-hidden-class="hidden"
-  data-tooltip-mode-value="<%= mode %>"
-  data-tooltip-expanded-value="false"
-  data-action="click->tooltip#toggle">
-
+<%= component(:div) do %>
   <%= yield %>
 
   <div class="ui-tooltip__content" data-tooltip-target="content">
     <%= content %>
   </div>
-</div>
+<% end %>

@@ -1,4 +1,5 @@
 module Ui
+  # Pagination frontend for gems like pagy
   class Pagination < Component
     class Page < Value
       attribute :position, Types::Strict::Integer
@@ -46,13 +47,15 @@ module Ui
     end
 
     def page_links
-      page_groups.inject('') do |content, page_group|
-        content += cell(
-          Ui::Pagination::Window,
-          page_group,
-          page_groups: page_groups
-        ).()
-      end
+      render_group(
+        page_groups.map do |page_group|
+          cell(
+            Ui::Pagination::Window,
+            page_group,
+            page_groups: page_groups
+          ).()
+        end
+      )
     end
 
     def page_groups
@@ -100,6 +103,16 @@ module Ui
 
     def disabled(content)
       content_tag(:button, content, disabled: true)
+    end
+
+    def component_data_attributes
+      {
+        controller: 'pagination',
+        pagination: {
+          'window-position-value': '1',
+          'hidden-class': 'hidden'
+        }
+      }
     end
   end
 end

@@ -1,8 +1,5 @@
 module Ui
   class List < Component
-    include Stylable
-    include Actionable
-
     Renderable = Types.Interface(:call)
     ListItems = Types.Interface(:each, :map, :any?)
 
@@ -16,10 +13,9 @@ module Ui
       begin
         ListItems[model]
       rescue Dry::Types::ConstraintError
-        raise Ui::Errors::InvalidListItems.new(
-          "List items for #{self.class.to_s} are invalid. Ensure you are passing " \
-          "an empty array or array of items that will be passed to the item renderer"
-        )
+        raise Ui::Errors::InvalidListItems,
+          "List items for #{self.class} are invalid. Ensure you are passing " \
+          'an empty array or array of items that will be passed to the item renderer'
       end
     end
 
@@ -42,20 +38,24 @@ module Ui
     end
 
     def header
+      return unless options[:header] || actions?
+
       content_tag(
         :header,
         render_group([
           options[:header],
           actions
         ])
-      ) if options[:header] || has_actions?
+      )
     end
 
     def footer
+      return unless options[:footer]
+
       content_tag(
         :footer,
         options[:footer]
-      ) if options[:footer]
+      )
     end
 
     def item_renderer

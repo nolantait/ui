@@ -1,7 +1,5 @@
 module Ui
   class Menu < Component
-    include Stylable
-
     def show
       render
     end

@@ -1,4 +1,5 @@
 module Ui
+  # Hides content depending on progress through a wizard. Like a form with steps
   class Wizard < Component
     class Step < Value
       attribute :position, Types::Strict::Integer
@@ -40,7 +41,7 @@ module Ui
         render_group([
           next_button,
           finish_button,
-          previous_button,
+          previous_button
         ])
       end
     end
@@ -50,7 +51,7 @@ module Ui
         :div,
         options[:finish],
         data: {
-          "wizard-target": "finish"
+          'wizard-target': 'finish'
         }
       )
     end
@@ -61,8 +62,8 @@ module Ui
         'Previous',
         path: '#',
         data: {
-          action: "click->wizard#previous",
-          "wizard-target": "previous"
+          action: 'click->wizard#previous',
+          'wizard-target': 'previous'
         }
       )
     end
@@ -74,14 +75,25 @@ module Ui
         path: '#',
         id: 'next',
         data: {
-          action: "click->wizard#next",
-          "wizard-target": "next"
+          action: 'click->wizard#next',
+          'wizard-target': 'next'
         }
       )
     end
 
     def current_step
       options.fetch(:current_step, 1)
+    end
+
+    def component_data_attributes
+      {
+        controller: 'wizard',
+        wizard: {
+          'hidden-class': 'hidden',
+          'current-step-class': 'ui-step--current',
+          'step-position-value': '1'
+        }
+      }
     end
   end
 end

@@ -1,6 +1,6 @@
 module Ui
+  # Adds user and class defined component styles to class attribute on component
   module Stylable
-
     private
 
     def user_defined_style
@@ -15,7 +15,12 @@ module Ui
     end
 
     def component_style
-      raise NotImplementedError
+      self.class.to_s
+          .gsub('::', '')
+          .underscore
+          .split('_')
+          .map(&:downcase)
+          .join('-')
     end
   end
 end

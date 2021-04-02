@@ -1,8 +1,6 @@
 module Ui
+  # Displayed in empty tables or lists to show something instead of nothing
   class Empty < Component
-    include Stylable
-    include Actionable
-
     def show
       render
     end
@@ -18,7 +16,7 @@ module Ui
     end
 
     def default_icon
-      "fas fa-inbox fa-5x"
+      'fas fa-inbox fa-5x'
     end
 
     def caption
@@ -30,7 +28,7 @@ module Ui
     end
 
     def component_style
-      "ui-empty"
+      'ui-empty'
     end
   end
 end
