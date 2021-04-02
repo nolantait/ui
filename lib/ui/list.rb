@@ -37,7 +37,7 @@ module Ui
 
     def rendered_items
       list_data.map do |item|
-        item_renderer.call(item)
+        content_tag(:li, item_renderer.call(item))
       end
     end
 
