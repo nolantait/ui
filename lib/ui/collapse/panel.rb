@@ -40,13 +40,9 @@ module Ui
       def component_data_attributes
         {
           controller: 'collapsable',
-          collapsable: {
-            'hidden-class': 'hidden',
-            collapsed: {
-              value: 'true',
-              class: 'ui-collapsed'
-            }
-          }
+          'collapsable-hidden-class': 'hidden',
+          'collapsable-collapsed-value': 'true',
+          'collapsable-collapsed-class': 'ui-collapsed'
         }
       end
     end

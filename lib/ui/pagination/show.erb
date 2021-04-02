@@ -1,11 +1,5 @@
-<nav
-     data-controller="pagination"
-     data-pagination-window-position-value="1"
-     data-pagination-hidden-class="hidden"
-     class="ui-pagination"
-     aria-label="pager"
-     role="navigation">
+<%= component(:nav) do %>
   <%= previous_page_link %>
   <%= page_links %>
   <%= next_page_link %>
-</nav>
+<% end %>

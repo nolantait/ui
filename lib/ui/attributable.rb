@@ -10,7 +10,11 @@ module Ui
     end
 
     def data_attributes
-      component_data_attributes.merge(user_defined_data_attributes)
+      flatten(component_data_attributes.merge(user_defined_data_attributes))
+    end
+
+    def flatten(hash)
+      FlattenHash.call(hash)
     end
 
     def component_data_attributes

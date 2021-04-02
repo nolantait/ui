@@ -35,11 +35,12 @@ module Ui
     )
       content = content_or_options_with_block
       content = yield.html_safe if block_given?
+      tag_options = default_component_options.merge(options)
 
       content_tag(
         name,
         content,
-        default_component_options.merge(options),
+        tag_options,
         escape
       )
     end

@@ -5,7 +5,8 @@ describe Ui::Pagination, type: :cell do
   let(:result) { html }
 
   context '#show' do
-    let(:html) {
+    let(:current_path) { nil }
+    let(:html) do
       cell(
         Ui::Pagination,
         [
@@ -16,7 +17,13 @@ describe Ui::Pagination, type: :cell do
         ],
         current_path: current_path
       ).()
-    }
+    end
+
+    it 'renders its data attributes' do
+      expect(result).to have_xpath '//nav[@data-controller="pagination"]'
+      expect(result).to have_xpath '//nav[@data-pagination-hidden-class="hidden"]'
+      expect(result).to have_xpath '//nav[@data-pagination-window-position-value="1"]'
+    end
 
     context 'on the first page' do
       let(:current_path) { '/links' }

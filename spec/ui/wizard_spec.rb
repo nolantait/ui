@@ -5,7 +5,7 @@ describe Ui::Wizard, type: :cell do
   let(:result) { html }
 
   context '#show' do
-    let(:html) {
+    let(:html) do
       cell(
         Ui::Wizard,
         [
@@ -27,12 +27,16 @@ describe Ui::Wizard, type: :cell do
         ],
         current_step: 1
       ).()
-    }
+    end
 
     it 'renders the menu items' do
-      expect(result).to have_content "My content"
-      expect(result).to have_content "My second content"
-      expect(result).to have_content "Next"
+      expect(result).to have_content 'My content'
+      expect(result).to have_content 'My second content'
+      expect(result).to have_content 'Next'
+      expect(result).to have_xpath '//article[@data-controller="wizard"]'
+      expect(result).to have_xpath '//article[@data-wizard-hidden-class="hidden"]'
+      expect(result).to have_xpath '//article[@data-wizard-current-step-class="ui-step--current"]'
+      expect(result).to have_xpath '//article[@data-wizard-step-position-value="1"]'
     end
   end
 end

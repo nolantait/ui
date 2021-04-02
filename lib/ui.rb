@@ -3,6 +3,7 @@ require 'cells'
 require 'cells-erb'
 require 'cells-rails'
 require 'dry-struct'
+require 'flatten_hash'
 
 require 'ui/errors/base'
 
