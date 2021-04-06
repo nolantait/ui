@@ -114,5 +114,9 @@ module Ui
         }
       }
     end
+
+    def component_style
+      'ui-pagination'
+    end
   end
 end

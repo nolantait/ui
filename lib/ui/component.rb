@@ -57,7 +57,13 @@ module Ui
     end
 
     def component_style
-      ''
+      self.class
+          .to_s
+          .gsub('::', '')
+          .underscore
+          .split('_')
+          .map(&:downcase)
+          .join('-')
     end
 
     def component_data_attributes
