@@ -64,7 +64,7 @@ module Ui
 
       def display(*args)
         if disabled?
-          display_disabled_button(args)
+          display_disabled_button(*args)
         elsif path == '#'
           content_tag(:button, args.first, **args.last)
         else
