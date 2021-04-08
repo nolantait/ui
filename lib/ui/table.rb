@@ -5,6 +5,8 @@ require 'ui/table/vertical'
 module Ui
   # Renders tables using predefined data and columns
   class Table < Component
+    include Sortable
+    include Selectable
     include ::Cell::Builder
 
     builds do |_model, options|
@@ -89,39 +91,15 @@ module Ui
     end
 
     def table_data_attributes
-      {
-        controller: table_controllers,
-      }.tap do |hash|
-        if selectable?
-          hash['selectable-selected-value'] = '[]'
-          hash['selectable-type-value'] = multi_select? ? 'many' : 'one'
-        end
-      end
+      return {} unless selectable?
+
+      selectable_controller_attributes
     end
 
     def table_body_data_attributes
-      {
-        controller: table_body_controllers,
-      }.tap do |hash|
-        if sortable?
-          hash['sortable-update-url-value'] =
-            sortable_options.fetch(:update_url, '#')
-          hash['sortable-input-name-value'] =
-            sortable_options.fetch(:input_name, 'object[position]')
-        end
-      end
-    end
+      return {} unless sortable?
 
-    def table_controllers
-      [].tap do |array|
-        array << 'selectable' if selectable?
-      end.join(' ')
-    end
-
-    def table_body_controllers
-      [].tap do |array|
-        array << 'sortable' if sortable?
-      end.join(' ')
+      sortable_controller_attributes
     end
 
     def header
@@ -166,32 +144,8 @@ module Ui
       ]
     end
 
-    def selectable?
-      features.keys.include? :selectable
-    end
-
-    def sortable?
-      features.keys.include? :sortable
-    end
-
     def select_all
-      cell(Ui::Table::SelectAll, nil) if multi_select?
-    end
-
-    def multi_select?
-      selectable_options.fetch(:multiple, false)
-    end
-
-    def selectable_options
-      features.fetch(:selectable, {})
-    end
-
-    def sortable_options
-      features.fetch(:sortable, {})
-    end
-
-    def features
-      options.fetch(:features, {})
+      cell(Ui::Table::SelectAll, nil) if selectable_multi_select?
     end
 
     def custom_row_renderer

@@ -12,6 +12,8 @@ require 'ui/value'
 
 require 'ui/actionable'
 require 'ui/attributable'
+require 'ui/sortable'
+require 'ui/selectable'
 require 'ui/stylable'
 require 'ui/component'
 

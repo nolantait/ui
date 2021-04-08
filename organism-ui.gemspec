@@ -1,3 +1,5 @@
+$:.push File.expand_path("lib", __dir__)
+
 # Maintain your gem's version:
 require 'ui/version'
 
@@ -29,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'cells-rails', '~> 0.1.3'
   spec.add_dependency 'dry-struct', '~> 1.4.0'
   spec.add_dependency 'dry-types', '~> 1.5'
-  spec.add_dependency 'rails', '~> 6.0.3', '>= 6.0.3.1'
+  spec.add_dependency 'rails', '>= 6.0.3'
   spec.add_dependency 'trailblazer-cells', '~> 0.0.3'
 
   spec.add_development_dependency 'byebug', '~> 11.1.3'

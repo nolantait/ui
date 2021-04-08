@@ -24,7 +24,8 @@ describe Ui::List, type: :cell do
         Ui::Empty,
         nil,
         caption: 'I am empty'
-      ).()
+      ).(),
+      features: features
     }
   }
 
@@ -44,6 +45,7 @@ describe Ui::List, type: :cell do
         'Item 3'
       ]
     }
+    let(:features) { {} }
 
 
     context 'with data' do
@@ -82,6 +84,21 @@ describe Ui::List, type: :cell do
 
       it 'renders with the custom renderer' do
         expect(result).to have_content 'test rendered'
+      end
+    end
+
+    context 'with a sortable feature' do
+      let(:features) do
+        {
+          sortable: {
+            update_url: '/update',
+            input_name: 'myobject[position]',
+          }
+        }
+      end
+
+      it 'renders with a sortable controller' do
+        expect(result).to have_xpath '//ul[@data-controller="sortable"]'
       end
     end
   end

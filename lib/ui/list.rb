@@ -1,6 +1,9 @@
 module Ui
+  # A ui component for lists. Can be called with any callable ItemRenderer.
   class List < Component
-    Renderable = Types.Interface(:call)
+    include Sortable
+
+    ItemRenderer = Types.Interface(:call)
     ListItems = Types.Interface(:each, :map, :any?)
 
     def show
@@ -10,17 +13,21 @@ module Ui
     private
 
     def list_data
-      begin
-        ListItems[model]
-      rescue Dry::Types::ConstraintError
-        raise Ui::Errors::InvalidListItems,
-          "List items for #{self.class} are invalid. Ensure you are passing " \
-          'an empty array or array of items that will be passed to the item renderer'
-      end
+      ListItems[model]
+    rescue Dry::Types::ConstraintError
+      raise Ui::Errors::InvalidListItems,
+        "List items for #{self.class} are invalid. Ensure you are passing " \
+        'an empty array or array of items that will be passed to the item renderer'
     end
 
     def list
-      content_tag(:ul, list_items)
+      content_tag(:ul, list_items, data: list_data_attributes)
+    end
+
+    def list_data_attributes
+      return unless sortable?
+
+      sortable_controller_attributes
     end
 
     def list_items
@@ -59,7 +66,7 @@ module Ui
     end
 
     def item_renderer
-      Renderable[options.fetch(:item_renderer, default_renderable)]
+      ItemRenderer[options.fetch(:item_renderer, default_renderable)]
     end
 
     def default_renderable
