@@ -39,9 +39,18 @@ module Ui
     end
 
     def rendered_items
-      list_data.map do |item|
-        content_tag(:li, item_renderer.call(item))
+      list_data.map.with_index do |item, index|
+        content_tag(
+          :li,
+          item_renderer.call(item),
+          data: { id: item_id(item, index)
+          }
+        )
       end
+    end
+
+    def item_id(item, index)
+      item.try(:id) || index
     end
 
     def header
