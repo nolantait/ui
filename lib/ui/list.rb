@@ -43,7 +43,8 @@ module Ui
         content_tag(
           :li,
           item_renderer.call(item),
-          data: { id: item_id(item, index)
+          data: {
+            id: item_id(item, index)
           }
         )
       end
