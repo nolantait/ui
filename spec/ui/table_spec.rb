@@ -5,14 +5,14 @@ describe Ui::Table, type: :cell do
   let(:result) { html }
 
   context '#show' do
-    let(:html) {
+    let(:html) do
       cell(
         Ui::Table,
         data,
         columns: [
           ['Column 1', ->(data) { data }],
           ['Column 2', ->(_data) { 'Column 2 data' }],
-          ['Column 3', ->(_data) { 'Column 3 data' }]
+          ['Column 3', ->(_data) { 'Column 3 data' }, { colspan: 2 }]
         ],
         header: 'My title',
         style: 'my-style',
@@ -23,7 +23,7 @@ describe Ui::Table, type: :cell do
           }
         }
       ).()
-    }
+    end
 
     context 'with a custom row and header renderer' do
       let(:orientation) { 'horizontal' }
@@ -41,7 +41,7 @@ describe Ui::Table, type: :cell do
           columns: [
             ['Column 1', ->(data) { data }],
             ['Column 2', ->(_data) { 'Column 2 data' }],
-            ['Column 3', ->(_data) { 'Column 3 data' }]
+            ['Column 3', ->(_data) { 'Column 3 data' }, { colspan: 2 }]
           ],
           header: 'My title',
           style: 'my-style',
@@ -75,6 +75,8 @@ describe Ui::Table, type: :cell do
         expect(result).to have_css '.my-style'
         expect(result).to have_css '.my-custom-header'
         expect(result).to have_css '.my-custom-row'
+        expect(result).to have_xpath '//th[@colspan]'
+        expect(result).to have_xpath '//td[@colspan]'
       end
     end
 
@@ -82,13 +84,13 @@ describe Ui::Table, type: :cell do
       let(:orientation) { 'horizontal' }
 
       context 'with data' do
-        let(:data) {
+        let(:data) do
           [
             'Data 1',
             'Data 2',
-            'Data 3',
+            'Data 3'
           ]
-        }
+        end
 
         it 'renders the menu items' do
           expect(result).to have_content 'My title'
