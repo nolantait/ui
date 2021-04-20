@@ -4,7 +4,7 @@ module Ui
   # Admins might want different links than a user so you can pass them through
   # options[:action]
   module Actionable
-    Actions = Types::Array.default([].freeze).of(Types::Callable)
+    Actions = Types::Array.default([].freeze).of(Types::Callable | Types::Strict::String)
 
     def actions(object = model)
       content_tag(:nav, class: 'ui-actions', role: 'navigation') do
