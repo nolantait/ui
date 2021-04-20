@@ -10,7 +10,7 @@ module Ui
       content_tag(:nav, class: 'ui-actions', role: 'navigation') do
         render_group(
           actions_list.map do |action|
-            action.call(object)
+            unwrap(action, object)
           end
         )
       end
@@ -23,6 +23,14 @@ module Ui
         raise Ui::Errors::InvalidActions,
           "Actions for #{self.class} are invalid. Ensure you are passing " \
           'an array of callable objects that will be passed a model'
+      end
+    end
+
+    def unwrap(action, object)
+      if action.is_a? Proc
+        action.call(object)
+      else
+        action
       end
     end
 
