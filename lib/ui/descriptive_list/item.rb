@@ -19,7 +19,7 @@ module Ui
       end
 
       def display(value)
-        if value.is_a?(Proc)
+        if value.respond_to?(:call)
           value.call
         else
           value

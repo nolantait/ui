@@ -26,7 +26,7 @@ module Ui
       end
 
       def display(item)
-        if item.is_a?(Proc)
+        if item.respond_to?(:call)
           item.call
         else
           item

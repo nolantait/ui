@@ -10,7 +10,7 @@ module Ui
 
         def title
           case
-          when column[1].is_a?(Proc)
+          when column[1].respond_to?(:call)
             column[1].call(model)
           else
             model.to_s

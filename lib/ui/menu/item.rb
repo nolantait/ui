@@ -4,7 +4,7 @@ module Ui
       include ::Cell::Builder
 
       builds do |item, options|
-        if item.is_a? Proc
+        if item.respond_to?(:call)
           Ui::Menu::Callable
         elsif item.is_a? Array
           Ui::Menu::Submenu

@@ -34,7 +34,7 @@ module Ui
     end
 
     def table_headers
-      if custom_header_renderer.is_a?(Proc)
+      if custom_header_renderer.respond_to?(:call)
         custom_table_headers
       else
         default_table_headers
@@ -67,7 +67,7 @@ module Ui
     end
 
     def display_table_rows
-      if custom_row_renderer.is_a?(Proc)
+      if custom_row_renderer.respond_to?(:call)
         custom_table_rows
       else
         default_table_rows

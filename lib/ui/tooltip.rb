@@ -10,15 +10,15 @@ module Ui
     def content
       cell(
         Ui::Card,
-        display(tooltip.fetch(:header, '')),
+        unwrap(tooltip.fetch(:header, '')),
         style: 'ui-tooltip-container'
       ).() do
-        display(tooltip.fetch(:content, ''))
+        unwrap(tooltip.fetch(:content, ''))
       end
     end
 
-    def display(content)
-      if content.is_a?(Proc)
+    def unwrap(content)
+      if content.respond_to?(:call)
         content.call
       else
         content

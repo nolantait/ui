@@ -14,7 +14,7 @@ module Ui
       end
 
       def title
-        if column_title.is_a?(Proc)
+        if column_title.respond_to?(:call)
           column_title.call
         else
           column_title

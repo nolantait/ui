@@ -27,7 +27,7 @@ module Ui
     end
 
     def unwrap(action, object)
-      if action.is_a? Proc
+      if action.respond_to?(:call)
         action.call(object)
       else
         action
