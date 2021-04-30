@@ -41,9 +41,13 @@ module Ui
         {
           controller: 'collapsable',
           'collapsable-hidden-class': 'hidden',
-          'collapsable-collapsed-value': 'true',
+          'collapsable-collapsed-value': collapsed?,
           'collapsable-collapsed-class': 'ui-collapsed'
         }
+      end
+
+      def collapsed?
+        options.fetch(:collapsed, true).to_s
       end
     end
   end
